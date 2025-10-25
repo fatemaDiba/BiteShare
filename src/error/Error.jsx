@@ -1,12 +1,11 @@
-import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const Error = () => {
   return (
     <div>
-      <Helmet>
+      {/* <Helmet>
         <title>Error-Food Share</title>
-      </Helmet>
+      </Helmet> */}
       <section className="relative h-screen z-10 bg-purple-500 py-[120px]">
         <div className="container mx-auto">
           <div className="-mx-4 flex">
