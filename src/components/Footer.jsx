@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="py-10 md:py-20">
           <div className="flex flex-col items-center justify-center">
             <img src="/assets/logo.png" alt="" className="w-12 md:w-14 mb-2" />
-            <h3 className="text-xl md:text-3xl font-bold mb-2">BiteBuddy</h3>
+            <h3 className="text-xl md:text-3xl font-bold mb-2">BiteShare</h3>
             <p className="md:w-[45%] text-center text-sm md:text-base text-white/50">
               Share your food, your story, and your love for cooking. Join a
               community that celebrates every bite!
@@ -76,7 +76,7 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-between items-center text-center text-sm md:text-base text-white/70">
             <div className="flex flex-col md:flex-row gap-4">
               <p className=" text-white/50">
-                © {new Date().getFullYear()} BiteBuddy Page. All Rights
+                © {new Date().getFullYear()} BiteShare Page. All Rights
                 Reserved.
               </p>
               <div className="flex gap-3">

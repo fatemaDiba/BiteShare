@@ -72,19 +72,19 @@ const AvailableFoods = () => {
     return food.foodName.toLowerCase().includes(query?.toLowerCase());
   });
 
-  const handleSortByQuantity = (e) => {
-    const sortValue = e.target.value;
-    setLoading(true);
-    axiosBase.post("/foods/sort-by-quantity", { sortValue }).then((res) => {
-      setFoods(res.data);
-      setLoading(false);
-    });
-  };
+  // const handleSortByQuantity = (e) => {
+  //   const sortValue = e.target.value;
+  //   setLoading(true);
+  //   axiosBase.post("/foods/sort-by-quantity", { sortValue }).then((res) => {
+  //     setFoods(res.data);
+  //     setLoading(false);
+  //   });
+  // };
 
   return (
     <div>
       {/* <Helmet>
-        <title>Available foods-BiteBuddy</title>
+        <title>Available foods-BiteShare</title>
       </Helmet> */}
       <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-12 mt-28">
         <div className="flex flex-col justify-center items-center mb-10 dark:text-white">

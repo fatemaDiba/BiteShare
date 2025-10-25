@@ -17,12 +17,12 @@ const Donate = () => {
   return (
     <div>
       <Helmet>
-        <title>Donate-BiteBuddy</title>
+        <title>Donate-BiteShare</title>
       </Helmet>
       <section className="w-11/12 sm:container xl:w-10/12 mx-auto px-6 py-12 mt-28">
         <div className="text-center">
           <h2 className="text-3xl font-semibold text-gray-800">
-            Support BiteBuddy
+            Support BiteShare
           </h2>
           <p className="mt-4 text-gray-600">
             Your generous donation helps us reduce food waste and feed those in

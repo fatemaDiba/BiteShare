@@ -44,7 +44,7 @@ const Login = () => {
   return (
     <div>
       {/* <Helmet>
-        <title>LogIn-BiteBuddy</title>
+        <title>LogIn-BiteShare</title>
       </Helmet> */}
       <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-14 mt-32">
         <div className="grid lg:grid-cols-2 gap-8 items-center">

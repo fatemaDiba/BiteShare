@@ -71,7 +71,7 @@ const FoodDetails = () => {
   return (
     <div>
       <Helmet>
-        <title>Food Details-BiteBuddy</title>
+        <title>Food Details-BiteShare</title>
       </Helmet>
       <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-12 mt-28">
         <div className="p-10 bg-light-secondary/50  rounded-2xl">

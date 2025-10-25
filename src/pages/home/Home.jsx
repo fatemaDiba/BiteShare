@@ -8,7 +8,7 @@ import Impact from "./unique/Impact";
 const Home = () => {
   return (
     <div>
-      {/* <Helmet>Home-BiteBuddy</Helmet> */}
+      {/* <Helmet>Home-BiteShare</Helmet> */}
       <div>
         <Banner></Banner>
         <Impact></Impact>
