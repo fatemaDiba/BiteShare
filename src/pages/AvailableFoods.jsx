@@ -35,6 +35,16 @@ const data = [
     quantity: "2 bowls",
     note: "Contains seasonal fruits, no preservatives.",
     status: "Delivered"
+  },
+  {
+    _id: "4",
+    foodImg: "https://i.ibb.co/CP0f5Pp/food4.jpg",
+    foodName: "Mixed Fruit Salad",
+    location: "Sylhet, Bangladesh",
+    exDate: "2025-02-27",
+    quantity: "2 bowls",
+    note: "Contains seasonal fruits, no preservatives.",
+    status: "Delivered"
   }
 ];
 
