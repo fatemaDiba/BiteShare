@@ -21,7 +21,7 @@ import AvailableFoods from "../pages/AvailableFoods";
 // import Pizza from "../cookingblog/Pizza";
 // import Salad from "../cookingblog/Salad";
 // import SuccessStories from "../footerPage/SuccessStories";
-// import CommunityEvent from "../footerPage/CommunityEvent";
+import CommunityEvent from "../footerPage/CommunityEvent";
 // import Donate from "../pages/home/unique/Donate";
 
 const router = createBrowserRouter([
@@ -123,10 +123,10 @@ const router = createBrowserRouter([
       //   path: "/success-stories",
       //   element: <SuccessStories></SuccessStories>,
       // },
-      // {
-      //   path: "/events",
-      //   element: <CommunityEvent></CommunityEvent>,
-      // },
+      {
+        path: "/events",
+        element: <CommunityEvent></CommunityEvent>,
+      },
       // cooking blog routes
       // {
       //   path: "/bread-recipe",

@@ -5,7 +5,7 @@ const Impact = () => {
         Our Impact
       </h2>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 ">
-        <div className="justify-items-center dark:text-white">
+        <div className="justify-items-center ">
           <img
             className=" w-[20%] md:w-[22%] mb-5"
             src="/assets/i5.png"
@@ -16,7 +16,7 @@ const Impact = () => {
             dollars of food over the year.
           </p>
         </div>
-        <div className="justify-items-center dark:text-white">
+        <div className="justify-items-center">
           <img
             className="w-[20%] md:w-[22%] mb-5"
             src="/assets/i2.png"
@@ -27,7 +27,7 @@ const Impact = () => {
             600kms per week.
           </p>
         </div>
-        <div className="justify-items-center dark:text-white">
+        <div className="justify-items-center">
           <img
             className="w-[20%] md:w-[22%] mb-5"
             src="/assets/i3.png"
@@ -38,7 +38,7 @@ const Impact = () => {
             food we provide.
           </p>
         </div>
-        <div className="justify-items-center dark:text-white">
+        <div className="justify-items-center">
           <img
             className="w-[20%] md:w-[22%] mb-5"
             src="/assets/i4.png"

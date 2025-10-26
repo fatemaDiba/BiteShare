@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
-  const { newUser, signInWithGoogle, setLoading } = useContext(AuthContext);
+  // const { newUser, signInWithGoogle, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -65,7 +65,8 @@ const Register = () => {
               <h2 className="font-bold text-center text-2xl md:text-4xl mb-6">
                 <span className="text-amber-700">Register</span> Now
               </h2>
-              <form onSubmit={handleRegisterBtn}>
+              <form >
+                {/* onSubmit={handleRegisterBtn} */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="form-control">
                     <label className="label">
@@ -130,7 +131,7 @@ const Register = () => {
               <div className="my-6">
                 <p className="text-sm mb-2 text-black">Register with Google</p>
                 <button
-                  onClick={handleGoogleBtn}
+                  // onClick={handleGoogleBtn}
                   className="btn bg-slate-200 hover:bg-slate-400 w-full font-bold text-black"
                 >
                   Google <FcGoogle className="text-xl" />

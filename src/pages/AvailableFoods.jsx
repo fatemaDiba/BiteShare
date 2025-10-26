@@ -1,7 +1,7 @@
 import Card from "../foodCard/Card";
 import { useEffect, useState } from "react";
 // import useAxios from "../hooks/useAxios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import Loading from "../loading/Loading";
 
 
@@ -40,8 +40,8 @@ const data = [
 
 
 const AvailableFoods = () => {
-  const [foods, setFoods] = useState([]);
-  const axiosBase = useAxios();
+  // const [foods, setFoods] = useState([]);
+  // const axiosBase = useAxios();
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [grid, setGrid] = useState(true);
@@ -87,7 +87,7 @@ const AvailableFoods = () => {
         <title>Available foods-BiteShare</title>
       </Helmet> */}
       <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-12 mt-28">
-        <div className="flex flex-col justify-center items-center mb-10 dark:text-white">
+        <div className="flex flex-col justify-center items-center mb-10">
           <h1 className="text-2xl md:text-4xl font-bold mb-2 ">
             Available Foods
           </h1>
@@ -101,7 +101,7 @@ const AvailableFoods = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:justify-items-center mb-14">
           {/* search bar */}
           <div className="col-span-2 md:col-span-1">
-            <label className="input input-bordered dark:border-white/50 flex items-center gap-2">
+            <label className="input input-bordered  flex items-center gap-2">
               <input
                 type="text"
                 className="grow"
@@ -125,8 +125,8 @@ const AvailableFoods = () => {
           {/* sort btn */}
           <div>
             <select
-              onChange={handleSortByQuantity}
-              className="select select-bordered w-full dark:border-white/60"
+              // onChange={handleSortByQuantity}
+              className="select select-bordered w-full "
             >
               <option defaultValue value="">
                 Sort by (Default)

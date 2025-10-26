@@ -53,7 +53,8 @@ const Login = () => {
               <h2 className="font-bold text-center text-xl text-black/90 md:text-4xl mb-6">
                 <span className="text-amber-700">Login</span> Now
               </h2>
-              <form onSubmit={handleSubmit}>
+              <form>
+                {/* onSubmit={handleSubmit} */}
                 <div className="form-control mb-4">
                   <label className="label">
                     <span className="label-text">Email</span>
@@ -93,7 +94,7 @@ const Login = () => {
                 <p className="text-sm mb-2 text-black">Login with Google</p>
                 <button
                   className="btn font-bold bg-slate-200 hover:bg-slate-400 w-full text-black"
-                  onClick={handleGoogleBtn}
+                // onClick={handleGoogleBtn}
                 >
                   Google <FcGoogle className="text-xl" />
                 </button>
