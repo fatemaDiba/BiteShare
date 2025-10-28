@@ -5,7 +5,7 @@ const Impact = () => {
         Our Impact
       </h2>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 ">
-        <div className="justify-items-center ">
+        <div className="">
           <img
             className=" w-[20%] md:w-[22%] mb-5"
             src="/assets/i5.png"

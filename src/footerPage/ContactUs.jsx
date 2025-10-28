@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const ContactUs = () => {
@@ -16,9 +15,9 @@ const ContactUs = () => {
   };
   return (
     <div className="w-11/12 sm:container xl:w-10/12 mx-auto mt-24 lg:mt-28 mb-10">
-      <Helmet>
-        <title>Contact Us-BiteBuddy</title>
-      </Helmet>
+      {/* <Helmet>
+        <title>Contact Us-BiteShare</title>
+      </Helmet> */}
       <section className="grid lg:grid-cols-2 gap-5 ">
         <div className="bg-light-secondary/70 row-start-2 lg:row-start-1 shadow-lg rounded-lg p-6">
           <div className="text-center">
@@ -43,7 +42,7 @@ const ContactUs = () => {
                 type="text"
                 id="name"
                 name="name"
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
+                className="mt-1 p-2 block w-full rounded-md bg-amber-50 border-gray-300 shadow-sm sm:text-sm"
                 placeholder="Your name"
                 required
               />
@@ -60,7 +59,7 @@ const ContactUs = () => {
                 type="email"
                 id="email"
                 name="email"
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm  sm:text-sm"
+                className="mt-1 p-2 block w-full rounded-md bg-amber-50 border-gray-300 shadow-sm  sm:text-sm"
                 placeholder="Your email"
                 required
               />
@@ -77,7 +76,7 @@ const ContactUs = () => {
                 id="message"
                 name="message"
                 rows="5"
-                className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm sm:text-sm"
+                className="mt-1 p-2 block w-full rounded-md bg-amber-50 border-gray-200 shadow-sm sm:text-sm"
                 placeholder="Write your message here..."
                 required
               ></textarea>

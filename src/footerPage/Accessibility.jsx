@@ -1,11 +1,10 @@
-import { Helmet } from "react-helmet-async";
 
 const Accessibility = () => {
   return (
     <div className="w-11/12 sm:container xl:w-10/12 mx-auto mt-20 lg:mt-28 mb-10">
-      <Helmet>
-        <title>Accessibility-BiteBuddy</title>
-      </Helmet>
+      {/* <Helmet>
+        <title>Accessibility-BiteShare</title>
+      </Helmet> */}
       <main className="py-12">
         <div>
           <section>
@@ -13,7 +12,7 @@ const Accessibility = () => {
               Our Commitment to Accessibility
             </h2>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
-              At <strong>BiteBuddy</strong>, we are committed to ensuring that
+              At <strong>BiteShare</strong>, we are committed to ensuring that
               our platform is accessible to everyone, including individuals with
               disabilities. We strive to provide a user-friendly experience that
               meets the highest accessibility standards.
@@ -45,7 +44,7 @@ const Accessibility = () => {
               Features to Enhance Accessibility
             </h3>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
-              We have implemented the following features to make BiteBuddy
+              We have implemented the following features to make BiteShare
               accessible:
             </p>
             <ul className="list-disc pl-6 text-sm md:text-lg text-gray-700 mb-6">
@@ -76,7 +75,7 @@ const Accessibility = () => {
             </h3>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
               Accessibility is an ongoing effort. We regularly review and update
-              BiteBuddy to address feedback from users and ensure compliance
+              BiteShare to address feedback from users and ensure compliance
               with the latest standards. Our team is dedicated to identifying
               and addressing any potential barriers to accessibility.
             </p>
@@ -85,7 +84,7 @@ const Accessibility = () => {
               Reporting Accessibility Issues
             </h3>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
-              If you encounter any accessibility issues while using BiteBuddy,
+              If you encounter any accessibility issues while using BiteShare,
               please let us know. We are committed to resolving accessibility
               barriers promptly. You can contact us through:
             </p>
@@ -104,7 +103,7 @@ const Accessibility = () => {
               Third-Party Content
             </h3>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
-              While we strive to ensure all aspects of BiteBuddy are accessible,
+              While we strive to ensure all aspects of BiteShare are accessible,
               some third-party content or features (e.g., embedded videos,
               external links) may not fully meet accessibility standards. We
               encourage you to reach out if you face difficulties accessing
@@ -116,7 +115,7 @@ const Accessibility = () => {
             </h3>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
               We are continuously working to enhance the accessibility of
-              BiteBuddy. Your feedback is invaluable in helping us make our
+              BiteShare. Your feedback is invaluable in helping us make our
               platform more inclusive for everyone.
             </p>
           </section>

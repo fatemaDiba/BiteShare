@@ -1,15 +1,14 @@
-// import { Helmet } from "react-helmet-async";
 
 const CommunityEvent = () => {
   return (
     <div>
       {/* <Helmet>
-        <title>Community Event-BiteBuddy</title>
+        <title>Community Event-BiteShare</title>
       </Helmet> */}
       <section className="w-11/12 sm:container xl:w-10/12 mx-auto bg-[#faf4e9] mt-28 mb-12 md:mb-20 rounded-xl py-12">
         <div className="px-5">
           <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-12">
-            BiteBuddy Community Events
+            BiteShare Community Events
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 
 const ManageCookie = () => {
@@ -16,15 +15,15 @@ const ManageCookie = () => {
   };
   return (
     <div className="w-11/12 sm:container xl:w-10/12 mx-auto mt-24 lg:mt-28 mb-10">
-      <Helmet>
-        <title>Manage Cookie-BiteBuddy</title>
-      </Helmet>
+      {/* <Helmet>
+        <title>Manage Cookie-BiteShare</title>
+      </Helmet> */}
       <div className=" bg-[#faf4e9] shadow-lg rounded-lg p-6">
         <h2 className="text-2xl md:text-4xl font-bold text-black/70 mb-4">
           Manage Cookies
         </h2>
         <p className="text-gray-800 mb-6">
-          Control how cookies are used on BiteBuddy. You can customize your
+          Control how cookies are used on BiteShare. You can customize your
           preferences below:
         </p>
 

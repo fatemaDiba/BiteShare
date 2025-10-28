@@ -13,14 +13,14 @@ import AvailableFoods from "../pages/AvailableFoods";
 // import FoodDetails from "../pages/FoodDetails";
 // import UpdateFood from "../PrivateRoutes/UpdateFood";
 // import Recipe from "../footerPage/Recipe";
-// import PrivacyPolicy from "../footerPage/PrivacyPolicy";
-// import Accessibility from "../footerPage/Accessibility";
-// import ContactUs from "../footerPage/ContactUs";
-// import ManageCookie from "../footerPage/ManageCookie";
+import PrivacyPolicy from "../footerPage/PrivacyPolicy";
+import Accessibility from "../footerPage/Accessibility";
+import ContactUs from "../footerPage/ContactUs";
+import ManageCookie from "../footerPage/ManageCookie";
 // import Bread from "../cookingblog/Bread";
 // import Pizza from "../cookingblog/Pizza";
 // import Salad from "../cookingblog/Salad";
-// import SuccessStories from "../footerPage/SuccessStories";
+import SuccessStories from "../footerPage/SuccessStories";
 import CommunityEvent from "../footerPage/CommunityEvent";
 // import Donate from "../pages/home/unique/Donate";
 
@@ -103,26 +103,26 @@ const router = createBrowserRouter([
       //   path: "/recipe",
       //   element: <Recipe></Recipe>,
       // },
-      // {
-      //   path: "/privacy-policy",
-      //   element: <PrivacyPolicy></PrivacyPolicy>,
-      // },
-      // {
-      //   path: "/accessibility",
-      //   element: <Accessibility></Accessibility>,
-      // },
-      // {
-      //   path: "/contact-us",
-      //   element: <ContactUs></ContactUs>,
-      // },
-      // {
-      //   path: "/manage-cookie",
-      //   element: <ManageCookie></ManageCookie>,
-      // },
-      // {
-      //   path: "/success-stories",
-      //   element: <SuccessStories></SuccessStories>,
-      // },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
+      {
+        path: "/accessibility",
+        element: <Accessibility></Accessibility>,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/manage-cookie",
+        element: <ManageCookie></ManageCookie>,
+      },
+      {
+        path: "/success-stories",
+        element: <SuccessStories></SuccessStories>,
+      },
       {
         path: "/events",
         element: <CommunityEvent></CommunityEvent>,

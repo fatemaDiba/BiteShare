@@ -1,11 +1,11 @@
-import { Helmet } from "react-helmet-async";
+
 
 const PrivacyPolicy = () => {
   return (
     <div className="w-11/12 sm:container xl:w-10/12 mx-auto mt-20 lg:mt-28 mb-10">
-      <Helmet>
-        <title>Privacy & Policy-BiteBuddy</title>
-      </Helmet>
+      {/* <Helmet>
+        <title>Privacy & Policy-BiteShare</title>
+      </Helmet> */}
       <main className="py-12">
         <div>
           <section>
@@ -13,10 +13,10 @@ const PrivacyPolicy = () => {
               Privacy Policy
             </h2>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
-              At <strong>BiteBuddy</strong>, your privacy is our priority. This
+              At <strong>BiteShare</strong>, your privacy is our priority. This
               Privacy Policy explains how we collect, use, and safeguard your
               information when you use our food-sharing platform. By accessing
-              or using BiteBuddy, you agree to the practices outlined in this
+              or using BiteShare, you agree to the practices outlined in this
               policy.
             </p>
 
@@ -39,7 +39,7 @@ const PrivacyPolicy = () => {
               </li>
               <li>
                 <strong>Device Information:</strong> Details about the device
-                and browser you use to access BiteBuddy.
+                and browser you use to access BiteShare.
               </li>
             </ul>
 
@@ -100,7 +100,7 @@ const PrivacyPolicy = () => {
             </h3>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
               We use cookies and similar tracking technologies to enhance your
-              experience on BiteBuddy. You can manage your cookie preferences
+              experience on BiteShare. You can manage your cookie preferences
               through your browser settings.
             </p>
 
@@ -115,7 +115,7 @@ const PrivacyPolicy = () => {
               Children's Privacy
             </h3>
             <p className="text-sm md:text-lg text-gray-700 mb-6">
-              BiteBuddy is not intended for children under the age of 13. We do
+              BiteShare is not intended for children under the age of 13. We do
               not knowingly collect personal information from children. If we
               become aware of such data, we will take steps to delete it
               promptly.
@@ -127,7 +127,7 @@ const PrivacyPolicy = () => {
             <p className="text-sm md:text-lg text-gray-700 mb-6">
               We may update this Privacy Policy from time to time. Any changes
               will be posted here, along with the effective date. Your continued
-              use of BiteBuddy signifies your acceptance of the updated terms.
+              use of BiteShare signifies your acceptance of the updated terms.
             </p>
 
             {/* <!-- Contact Us --> */}
