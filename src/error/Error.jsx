@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const Error = () => {
   return (
-    <div>
+    <div className="overflow-hidden">
       {/* <Helmet>
         <title>Error-Food Share</title>
       </Helmet> */}

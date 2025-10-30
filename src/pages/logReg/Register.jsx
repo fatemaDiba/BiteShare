@@ -70,7 +70,7 @@ const Register = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text">Name</span>
+                      <span className="label-text text-sm text-black">Name</span>
                     </label>
                     <input
                       type="text"
@@ -82,7 +82,7 @@ const Register = () => {
                   </div>
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text">Email</span>
+                      <span className="label-text text-sm text-black">Email</span>
                     </label>
                     <input
                       type="email"
@@ -94,7 +94,7 @@ const Register = () => {
                   </div>
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text">Photo URL</span>
+                      <span className="label-text text-sm text-black">Photo URL</span>
                     </label>
                     <input
                       type="url"
@@ -106,7 +106,7 @@ const Register = () => {
                   </div>
                   <div className="form-control">
                     <label className="label">
-                      <span className="label-text">Password</span>
+                      <span className="label-text text-sm text-black">Password</span>
                     </label>
                     <input
                       type="password"
@@ -115,14 +115,15 @@ const Register = () => {
                       className="input input-bordered"
                       required
                     />
+                    <label className="label mt-1.5">
+                      <a href="#" className="text-sm text-black label-text-alt link link-hover">
+                        Forgot password?
+                      </a>
+                    </label>
                   </div>
                 </div>
                 <div className="form-control mt-6">
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
-                  </label>
+
                   <button className="btn bg-amber-500 hover:bg-amber-600 text-white w-full">
                     Register
                   </button>
