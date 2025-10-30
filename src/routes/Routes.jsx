@@ -8,8 +8,8 @@ import Register from "../pages/logReg/Register";
 // import RequestMyFood from "../PrivateRoutes/RequestMyFood";
 // import ManageMyFoods from "../PrivateRoutes/ManageMyFoods";
 import AvailableFoods from "../pages/AvailableFoods";
-// import PrivateRoute from "../PrivateRoutes/private/PrivateRoute";
-// import PrivateRegLog from "../PrivateRoutes/private/PrivateRegLog";
+import PrivateRoute from "../PrivateRoutes/private/PrivateRoute";
+import PrivateRegLog from "../PrivateRoutes/private/PrivateRegLog";
 // import FoodDetails from "../pages/FoodDetails";
 // import UpdateFood from "../PrivateRoutes/UpdateFood";
 // import Recipe from "../footerPage/Recipe";
@@ -41,17 +41,17 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          // <PrivateRegLog>
-          <Login></Login>
-          // </PrivateRegLog>
+          <PrivateRegLog>
+            <Login></Login>
+          </PrivateRegLog>
         ),
       },
       {
         path: "/register",
         element: (
-          // <PrivateRegLog>
-          <Register></Register>
-          // </PrivateRegLog>
+          <PrivateRegLog>
+            <Register></Register>
+          </PrivateRegLog>
         ),
       },
       // {

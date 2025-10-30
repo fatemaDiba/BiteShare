@@ -1,58 +1,57 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-// import { AuthContext } from "../../Auth/AuthProvider";
-// import { useContext } from "react";
+import { AuthContext } from "../../Auth/AuthProvider";
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
-  // const { newUser, signInWithGoogle, setLoading } = useContext(AuthContext);
+  const { newUser, signInWithGoogle, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
-  // const handleRegisterBtn = (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   const name = form.name.value;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
-  //   const photoUrl = form.photo.value;
+  const handleRegisterBtn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photoUrl = form.photo.value;
 
-  //   const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-  //   if (!password.match(regex)) {
-  //     toast.error("Please give A Valid Password ");
-  //     return;
-  //   }
-  //   newUser(email, password)
-  //     .then((res) => {
-  //       // console.log(res.user);
-  //       form.reset();
-  //       toast.success("Successfully registered user");
+    const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    if (!password.match(regex)) {
+      toast.error("Please give A Valid Password ");
+      return;
+    }
+    newUser(email, password)
+      .then((res) => {
+        form.reset();
+        toast.success("Successfully registered user");
 
-  //       updateUser(name, photoUrl)
-  //         .then((res) => { })
-  //         .catch((error) => {
-  //           toast.error("Something went wrong");
-  //         });
+        updateUser(name, photoUrl)
+          .then((res) => { })
+          .catch((error) => {
+            toast.error("Something went wrong");
+          });
 
-  //       navigate(location?.state ? location.state : "/");
-  //     })
-  //     .catch((error) => {
-  //       toast.error("Something went wrong");
-  //       setLoading(false);
-  //     });
-  // };
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        toast.error("Something went wrong");
+        setLoading(false);
+      });
+  };
 
-  // const handleGoogleBtn = () => {
-  //   signInWithGoogle()
-  //     .then((res) => {
-  //       toast.success("Successfully registered with google");
-  //       navigate(location?.state ? location.state : "/");
-  //     })
-  //     .catch((error) => {
-  //       toast.error("Something went wrong");
-  //       setLoading(false);
-  //     });
-  // };
+  const handleGoogleBtn = () => {
+    signInWithGoogle()
+      .then((res) => {
+        toast.success("Successfully registered with google");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        toast.error("Something went wrong");
+        setLoading(false);
+      });
+  };
   return (
     <div>
       {/* <Helmet>
@@ -65,8 +64,7 @@ const Register = () => {
               <h2 className="font-bold text-center text-2xl md:text-4xl mb-6">
                 <span className="text-amber-700">Register</span> Now
               </h2>
-              <form >
-                {/* onSubmit={handleRegisterBtn} */}
+              <form onSubmit={handleRegisterBtn}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="form-control">
                     <label className="label">
