@@ -26,9 +26,9 @@ const DonationSection = () => {
                   <h2 className="text-amber-600 text-lg font-bold">
                     Palestine: Donate life saving food
                   </h2>
-                  {/* <span className="text-sm text-blue-300 underline">
+                  <span className="text-sm text-blue-300 underline">
                     Read more
-                  </span> */}
+                  </span>
                 </div>
                 <div className="block mt-4">
                   <div className="absolute bottom-10 left-5">
@@ -57,9 +57,9 @@ const DonationSection = () => {
                   <h2 className="text-amber-600 text-lg font-bold">
                     Syria: Share with families in need
                   </h2>
-                  {/* <span className="text-sm text-blue-300 underline">
+                  <span className="text-sm text-blue-300 underline">
                     Read more
-                  </span> */}
+                  </span>
                 </div>
                 <div className="block mt-4">
                   <div className="absolute bottom-10 left-5">
@@ -88,9 +88,9 @@ const DonationSection = () => {
                   <h2 className="text-amber-600 text-lg font-bold">
                     Lebanon: Help families in need
                   </h2>
-                  {/* <span className="text-sm text-blue-300 underline">
+                  <span className="text-sm text-blue-300 underline">
                     Read more
-                  </span> */}
+                  </span>
                 </div>
                 <div className="block mt-4">
                   <div className="absolute bottom-10 left-5">

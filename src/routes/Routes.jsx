@@ -12,17 +12,17 @@ import PrivateRoute from "../PrivateRoutes/private/PrivateRoute";
 import PrivateRegLog from "../PrivateRoutes/private/PrivateRegLog";
 // import FoodDetails from "../pages/FoodDetails";
 // import UpdateFood from "../PrivateRoutes/UpdateFood";
-// import Recipe from "../footerPage/Recipe";
+import Recipe from "../footerPage/Recipe";
 import PrivacyPolicy from "../footerPage/PrivacyPolicy";
 import Accessibility from "../footerPage/Accessibility";
 import ContactUs from "../footerPage/ContactUs";
 import ManageCookie from "../footerPage/ManageCookie";
-// import Bread from "../cookingblog/Bread";
-// import Pizza from "../cookingblog/Pizza";
-// import Salad from "../cookingblog/Salad";
+import Bread from "../cookingblog/Bread";
+import Pizza from "../cookingblog/Pizza";
+import Salad from "../cookingblog/Salad";
 import SuccessStories from "../footerPage/SuccessStories";
 import CommunityEvent from "../footerPage/CommunityEvent";
-// import Donate from "../pages/home/unique/Donate";
+import Donate from "../pages/home/unique/Donate";
 
 const router = createBrowserRouter([
   {
@@ -94,15 +94,15 @@ const router = createBrowserRouter([
       //     </PrivateRoute>
       //   ),
       // },
-      // {
-      //   path: "/donate",
-      //   element: <Donate></Donate>,
-      // },
+      {
+        path: "/donate",
+        element: <Donate></Donate>,
+      },
       // footer section page
-      // {
-      //   path: "/recipe",
-      //   element: <Recipe></Recipe>,
-      // },
+      {
+        path: "/recipe",
+        element: <Recipe></Recipe>,
+      },
       {
         path: "/privacy-policy",
         element: <PrivacyPolicy></PrivacyPolicy>,
@@ -128,18 +128,18 @@ const router = createBrowserRouter([
         element: <CommunityEvent></CommunityEvent>,
       },
       // cooking blog routes
-      // {
-      //   path: "/bread-recipe",
-      //   element: <Bread></Bread>,
-      // },
-      // {
-      //   path: "/pizza-recipe",
-      //   element: <Pizza></Pizza>,
-      // },
-      // {
-      //   path: "/salad-recipe",
-      //   element: <Salad></Salad>,
-      // },
+      {
+        path: "/bread-recipe",
+        element: <Bread></Bread>,
+      },
+      {
+        path: "/pizza-recipe",
+        element: <Pizza></Pizza>,
+      },
+      {
+        path: "/salad-recipe",
+        element: <Salad></Salad>,
+      },
     ],
   },
 ]);
