@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { useNavigate, useParams } from "react-router";
 import useAxios from "../hooks/useAxios";
 import { toast } from "react-toastify";
@@ -70,9 +69,9 @@ const FoodDetails = () => {
 
   return (
     <div>
-      <Helmet>
+      {/* <Helmet>
         <title>Food Details-BiteShare</title>
-      </Helmet>
+      </Helmet> */}
       <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-12 mt-28">
         <div className="p-10 bg-light-secondary/50  rounded-2xl">
           <div className="flex flex-col lg:flex-row gap-10 items-center">

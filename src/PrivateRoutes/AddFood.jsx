@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { toast } from "react-toastify";
-import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../Auth/AuthProvider";
 import { useNavigate } from "react-router";
 import useAxios from "../hooks/useAxios";
@@ -63,43 +63,43 @@ const AddFood = () => {
 
   return (
     <div>
-      <Helmet>
+      {/* <Helmet>
         <title>Add food-BiteBuddy</title>
-      </Helmet>
-      <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-20 mt-28">
+      </Helmet> */}
+      <div className="w-11/12 sm:container xl:w-7/12 mx-auto mb-20 mt-28">
         <div className="card bg-light-secondary/50 w-[90%] md:w-[80%] mx-auto shrink-0 shadow-2xl">
-          <div className="card-body dark:text-white">
-            <h2 className="font-bold text-center text-2xl sm:text-3xl lg:text-4xl">
+          <div className="card-body">
+            <h2 className="font-bold text-center text-2xl sm:text-3xl lg:text-4xl my-6">
               Add Your <span className="text-amber-700">Food Information </span>
             </h2>
-            <form onSubmit={handleAddFoodBtn}>
-              <div className="form-control">
+            <form onSubmit={handleAddFoodBtn} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text  dark:text-white">Food Name</span>
+                  <span className="label-text ">Food Name</span>
                 </label>
                 <input
                   type="text"
                   name="foodName"
                   placeholder="Food name"
-                  className="input input-bordered mb-5"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text dark:text-white">Food Image</span>
+                  <span className="label-text">Food Image</span>
                 </label>
                 <input
                   type="url"
                   name="foodImg"
                   placeholder="food url"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text  dark:text-white">
+                  <span className="label-text ">
                     Pick up location
                   </span>
                 </label>
@@ -107,13 +107,13 @@ const AddFood = () => {
                   type="text"
                   name="location"
                   placeholder="Pick up location"
-                  className="input input-bordered mb-5"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text dark:text-white">Quantity</span>
+                  <span className="label-text">Quantity</span>
                 </label>
                 <input
                   type="number"
@@ -121,13 +121,13 @@ const AddFood = () => {
                   name="quantity"
                   placeholder="quantity of food"
                   required
-                  className="input input-bordered mb-5"
+                  className="input input-bordered w-full"
                 />
               </div>
 
-              <div className="form-control">
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text dark:text-white">
+                  <span className="label-text">
                     Expire Date
                   </span>
                 </label>
@@ -136,17 +136,25 @@ const AddFood = () => {
                   name="date"
                   placeholder="expire date and time"
                   required
-                  className="input input-bordered mb-5"
+                  className="input input-bordered w-full"
                 />
               </div>
-              <textarea
-                placeholder="additional notes"
-                name="note"
-                className="textarea textarea-bordered textarea-base w-full mt-3"
-                required
-              ></textarea>
+              <div className="form-control gap-2 flex flex-col md:col-span-2">
+                <label className="label">
+                  <span className="label-text">
+                    Additional Notes
+                  </span>
+                </label>
+                <textarea
+                  placeholder="additional notes"
+                  name="note"
+                  className="textarea textarea-bordered textarea-base w-full"
+                  required
+                ></textarea>
+              </div>
 
-              <div className="form-control mt-6 mb-4">
+
+              <div className="form-control gap-2 flex flex-col mb-4 md:col-span-2">
                 <button className="btn bg-amber-500 hover:bg-amber-600 text-white">
                   Add Food
                 </button>

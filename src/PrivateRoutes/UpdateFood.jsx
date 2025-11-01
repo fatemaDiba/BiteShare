@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import useAxios from "../hooks/useAxios";
 import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
@@ -17,9 +16,9 @@ const UpdateFood = () => {
         setFood(res.data);
       })
       .catch(() => {
-        toast.error("Something went Wrong");
+        toast.error("Something went wrong");
       });
-  }, []);
+  }, [axiosBase, id]);
 
   const handleUpdateFoodBtn = (e) => {
     e.preventDefault();
@@ -37,7 +36,7 @@ const UpdateFood = () => {
     }
 
     if (!note || note.length < 5) {
-      toast.error("Please give a note at least 5 character!");
+      toast.error("Please give a note at least 5 characters!");
       return;
     }
 
@@ -57,7 +56,7 @@ const UpdateFood = () => {
 
     axiosBase
       .put(`/foods/update-food/${id}`, foodUpdateFormData)
-      .then((res) => {
+      .then(() => {
         toast.success("Successfully Updated Food");
         navigate("/available-foods");
       })
@@ -68,60 +67,65 @@ const UpdateFood = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Update food-BiteBuddy</title>
-      </Helmet>
-      <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-12 mt-28">
-        <div className="card bg-light-secondary/50 w-[90%] mx-auto shrink-0 shadow-2xl">
-          <div className="card-body dark:text-white">
-            <h2 className="font-bold text-center text-2xl sm:text-3xl lg:text-4xl">
-              <span className="text-amber-700">Update</span> Your
-              <span className="text-amber-700"> Food </span>
-              Information Now
+      {/* <Helmet>
+        <title>Update food - BiteBuddy</title>
+      </Helmet> */}
+      <div className="w-11/12 sm:container xl:w-7/12 mx-auto mb-20 mt-28">
+        <div className="card bg-light-secondary/50 w-[90%] md:w-[80%] mx-auto shrink-0 shadow-2xl">
+          <div className="card-body">
+            <h2 className="font-bold text-center text-2xl sm:text-3xl lg:text-4xl my-6">
+              Update Your <span className="text-amber-700">Food Information</span>
             </h2>
-            <form onSubmit={handleUpdateFoodBtn}>
-              <div className="form-control">
+
+            <form
+              onSubmit={handleUpdateFoodBtn}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text dark:text-white">Food Name</span>
+                  <span className="label-text">Food Name</span>
                 </label>
                 <input
                   type="text"
                   name="foodName"
                   defaultValue={food.foodName}
                   placeholder="Food name"
-                  className="input input-bordered mb-5"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
-              <div className="form-control">
+
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text dark:text-white">Food Image</span>
+                  <span className="label-text">Food Image</span>
                 </label>
                 <input
                   type="url"
                   name="foodImg"
                   defaultValue={food.foodImg}
                   placeholder="food url"
-                  className="input input-bordered"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
-              <div className="form-control">
+
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text  dark:text-white">Food Name</span>
+                  <span className="label-text">Pick up location</span>
                 </label>
                 <input
                   type="text"
                   name="location"
                   defaultValue={food.location}
                   placeholder="Pick up location"
-                  className="input input-bordered mb-5"
+                  className="input input-bordered w-full"
                   required
                 />
               </div>
-              <div className="form-control">
+
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text dark:text-white">Quantity</span>
+                  <span className="label-text">Quantity</span>
                 </label>
                 <input
                   type="number"
@@ -129,35 +133,39 @@ const UpdateFood = () => {
                   name="quantity"
                   defaultValue={food.quantity}
                   placeholder="quantity of food"
+                  className="input input-bordered w-full"
                   required
-                  className="input input-bordered mb-5"
                 />
               </div>
 
-              <div className="form-control">
+              <div className="form-control gap-2 flex flex-col">
                 <label className="label">
-                  <span className="label-text dark:text-white">
-                    Expire Date
-                  </span>
+                  <span className="label-text">Expire Date</span>
                 </label>
                 <input
                   type="date"
                   name="date"
                   defaultValue={food.exDate}
                   placeholder="expire date and time"
+                  className="input input-bordered w-full"
                   required
-                  className="input input-bordered mb-5"
                 />
               </div>
-              <textarea
-                placeholder="additional notes"
-                name="note"
-                defaultValue={food.note}
-                className="textarea textarea-bordered textarea-base w-full mt-3"
-                required
-              ></textarea>
 
-              <div className="form-control mt-6 mb-4">
+              <div className="form-control gap-2 flex flex-col md:col-span-2">
+                <label className="label">
+                  <span className="label-text">Additional Notes</span>
+                </label>
+                <textarea
+                  placeholder="additional notes"
+                  name="note"
+                  defaultValue={food.note}
+                  className="textarea textarea-bordered textarea-base w-full"
+                  required
+                ></textarea>
+              </div>
+
+              <div className="form-control gap-2 flex flex-col mb-4 md:col-span-2">
                 <button className="btn bg-amber-500 hover:bg-amber-600 text-white">
                   Update Food
                 </button>
