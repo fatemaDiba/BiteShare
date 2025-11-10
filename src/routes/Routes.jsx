@@ -23,6 +23,9 @@ import Salad from "../cookingblog/Salad";
 import SuccessStories from "../footerPage/SuccessStories";
 import CommunityEvent from "../footerPage/CommunityEvent";
 import Donate from "../pages/home/unique/Donate";
+import Dashboard from "../layout/Dashboard";
+import DashHome from "../pages/dashboard/home/DashHome";
+import Profile from "../components/dashboard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +34,7 @@ const router = createBrowserRouter([
     errorElement: <Error></Error>,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home></Home>,
       },
       {
@@ -52,30 +55,6 @@ const router = createBrowserRouter([
           <PrivateRegLog>
             <Register></Register>
           </PrivateRegLog>
-        ),
-      },
-      {
-        path: "/add-food",
-        element: (
-          <PrivateRoute>
-            <AddFood></AddFood>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/request-myfood",
-        element: (
-          <PrivateRoute>
-            <RequestMyFood></RequestMyFood>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/manage-myfoods",
-        element: (
-          <PrivateRoute>
-            <ManageMyFoods></ManageMyFoods>
-          </PrivateRoute>
         ),
       },
       {
@@ -141,6 +120,41 @@ const router = createBrowserRouter([
         element: <Salad></Salad>,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    errorElement: <Error></Error>,
+    children: [
+      {
+        index: true,
+        element: <DashHome></DashHome>,
+      },
+      {
+        path: "/dashboard/add-food",
+        element: (
+          <PrivateRoute>
+            <AddFood></AddFood>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/request-myfood",
+        element: (
+          <PrivateRoute>
+            <RequestMyFood></RequestMyFood>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manage-myfoods",
+        element: (
+          <PrivateRoute>
+            <ManageMyFoods></ManageMyFoods>
+          </PrivateRoute>
+        ),
+      },
+    ]
   },
 ]);
 export default router;
