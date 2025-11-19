@@ -14,7 +14,7 @@ const Profile = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(first)("Something went wrong!");
+        console.log("Something went wrong!");
       });
   };
 

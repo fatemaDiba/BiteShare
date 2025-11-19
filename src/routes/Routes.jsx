@@ -4,14 +4,9 @@ import Home from "../pages/home/Home";
 import Error from "../error/Error";
 import Login from "../pages/logReg/Login";
 import Register from "../pages/logReg/Register";
-import AddFood from "../PrivateRoutes/AddFood";
-import RequestMyFood from "../PrivateRoutes/RequestMyFood";
-import ManageMyFoods from "../PrivateRoutes/ManageMyFoods";
-import AvailableFoods from "../pages/AvailableFoods";
 import PrivateRoute from "../PrivateRoutes/private/PrivateRoute";
 import PrivateRegLog from "../PrivateRoutes/private/PrivateRegLog";
-import FoodDetails from "../pages/FoodDetails";
-import UpdateFood from "../PrivateRoutes/UpdateFood";
+import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import Recipe from "../footerPage/Recipe";
 import PrivacyPolicy from "../footerPage/PrivacyPolicy";
 import Accessibility from "../footerPage/Accessibility";
@@ -26,6 +21,11 @@ import Donate from "../pages/home/unique/Donate";
 import Dashboard from "../layout/Dashboard";
 import DashHome from "../pages/dashboard/home/DashHome";
 import Profile from "../components/dashboard/Profile";
+import RequestedFoods from "../pages/dashboard/RequestedFoods/RequestedFoods";
+import AddFood from "../pages/dashboard/AddFood/AddFood";
+import ManageMyFoods from "../pages/dashboard/ManageMyFoods/ManageMyFoods";
+import AvailableFoods from "../pages/AvailableFoods/AvailableFoods";
+import UpdateFood from "../pages/dashboard/UpdateFood/UpdateFood";
 
 const router = createBrowserRouter([
   {
@@ -142,7 +142,7 @@ const router = createBrowserRouter([
         path: "/dashboard/request-myfood",
         element: (
           <PrivateRoute>
-            <RequestMyFood></RequestMyFood>
+            <RequestedFoods></RequestedFoods>
           </PrivateRoute>
         ),
       },

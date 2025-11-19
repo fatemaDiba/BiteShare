@@ -1,57 +1,13 @@
-import Card from "../foodCard/Card";
+import Card from "../../foodCard/Card";
 import { useEffect, useState } from "react";
-// import useAxios from "../hooks/useAxios";
-// import { toast } from "react-toastify";
-import Loading from "../loading/Loading";
-
-
-const data = [
-  {
-    _id: "1",
-    foodImg: "https://i.ibb.co/2g7fYq3/food1.jpg",
-    foodName: "Vegetable Fried Rice",
-    location: "Dhaka, Bangladesh",
-    exDate: "2025-10-30",
-    quantity: "3 boxes",
-    note: "Freshly cooked, vegetarian-friendly.",
-    status: "Available"
-  },
-  {
-    _id: "2",
-    foodImg: "https://i.ibb.co/TPtZp6k/food2.jpg",
-    foodName: "Chicken Biryani",
-    location: "Chittagong, Bangladesh",
-    exDate: "2025-10-28",
-    quantity: "5 plates",
-    note: "Stored properly, still warm.",
-    status: "Pending"
-  },
-  {
-    _id: "3",
-    foodImg: "https://i.ibb.co/CP0f5Pp/food3.jpg",
-    foodName: "Mixed Fruit Salad",
-    location: "Sylhet, Bangladesh",
-    exDate: "2025-10-27",
-    quantity: "2 bowls",
-    note: "Contains seasonal fruits, no preservatives.",
-    status: "Delivered"
-  },
-  {
-    _id: "4",
-    foodImg: "https://i.ibb.co/CP0f5Pp/food4.jpg",
-    foodName: "Mixed Fruit Salad",
-    location: "Sylhet, Bangladesh",
-    exDate: "2025-02-27",
-    quantity: "2 bowls",
-    note: "Contains seasonal fruits, no preservatives.",
-    status: "Delivered"
-  }
-];
+import { toast } from "react-toastify";
+import Loading from "../../loading/Loading";
+import useAxios from "../../hooks/useAxios";
 
 
 const AvailableFoods = () => {
-  // const [foods, setFoods] = useState([]);
-  // const axiosBase = useAxios();
+  const [foods, setFoods] = useState([]);
+  const axiosBase = useAxios();
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [grid, setGrid] = useState(true);
@@ -65,31 +21,31 @@ const AvailableFoods = () => {
     setGrid(!grid);
   };
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   axiosBase
-  //     .get("/foods/available-foods")
-  //     .then((res) => {
-  //       setFoods(res.data);
-  //       setLoading(false);
-  //     })
-  //     .catch(() => {
-  //       toast.error("Something went wrong");
-  //     });
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    axiosBase
+      .get("/foods/available-foods")
+      .then((res) => {
+        setFoods(res.data);
+        setLoading(false);
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+      });
+  }, []);
 
-  const filteredFood = data?.filter((food) => {
+  const filteredFood = foods?.filter((food) => {
     return food.foodName.toLowerCase().includes(query?.toLowerCase());
   });
 
-  // const handleSortByQuantity = (e) => {
-  //   const sortValue = e.target.value;
-  //   setLoading(true);
-  //   axiosBase.post("/foods/sort-by-quantity", { sortValue }).then((res) => {
-  //     setFoods(res.data);
-  //     setLoading(false);
-  //   });
-  // };
+  const handleSortByQuantity = (e) => {
+    const sortValue = e.target.value;
+    setLoading(true);
+    axiosBase.post("/foods/sort-by-quantity", { sortValue }).then((res) => {
+      setFoods(res.data);
+      setLoading(false);
+    });
+  };
 
   return (
     <div>
@@ -135,7 +91,7 @@ const AvailableFoods = () => {
           {/* sort btn */}
           <div>
             <select
-              // onChange={handleSortByQuantity}
+              onChange={handleSortByQuantity}
               className="select select-bordered w-full "
             >
               <option defaultValue value="">

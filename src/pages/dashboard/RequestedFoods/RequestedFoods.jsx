@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import useAxios from "../hooks/useAxios";
-import { AuthContext } from "../Auth/AuthProvider";
+import useAxios from "../../../hooks/useAxios";
+import { AuthContext } from "../../../Auth/AuthProvider";
 import { toast } from "react-toastify";
-import useAxiosSecure from "../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const RequestMyFood = () => {
+const RequestedFoods = () => {
   const [foods, setFoods] = useState([]);
   const axiosBase = useAxios();
   const axiosSecure = useAxiosSecure();
@@ -62,4 +62,4 @@ const RequestMyFood = () => {
   );
 };
 
-export default RequestMyFood;
+export default RequestedFoods;

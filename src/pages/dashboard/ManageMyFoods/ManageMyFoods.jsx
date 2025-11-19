@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import useAxios from "../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios";
 import { toast } from "react-toastify";
-import { AuthContext } from "../Auth/AuthProvider";
+import { AuthContext } from "../../../Auth/AuthProvider";
 import { Link } from "react-router";
-import useAxiosSecure from "../hooks/useAxiosSecure";
-import Loading from "../loading/Loading";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loading from "../../../loading/Loading";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { RiDeleteBin5Fill } from "react-icons/ri";

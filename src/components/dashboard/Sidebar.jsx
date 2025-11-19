@@ -2,6 +2,9 @@
 import { useState } from "react";
 import { BiCog, BiHome, BiUser } from "react-icons/bi";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
+import { BsFolder2 } from "react-icons/bs";
+import { RiStickyNoteAddLine } from "react-icons/ri";
+import { GrUpdate } from "react-icons/gr";
 import { FiX } from "react-icons/fi";
 import { Link, useLocation } from "react-router";
 const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
@@ -10,9 +13,11 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
 
   const navItems = [
     { name: "Home", icon: <BiHome className="text-2xl" />, path: "/dashboard" },
-    { name: "Requested Foods", icon: <BiUser className="text-2xl" />, path: "/dashboard/request-myfood" },
-    { name: "Add Food", icon: <BiUser className="text-2xl" />, path: "/dashboard/add-food" },
-    { name: "Update Food", icon: <BiUser className="text-2xl" />, path: "/dashboard/manage-myfoods" },
+    { name: "Add Food", icon: <RiStickyNoteAddLine className="text-2xl" />, path: "/dashboard/add-food" },
+    { name: "My Foods", icon: <GrUpdate className="text-xl" />, path: "/dashboard/manage-myfoods" },
+
+    { name: "Requested Foods", icon: <BsFolder2 className="text-2xl" />, path: "/dashboard/request-myfood" },
+
   ];
 
   return (

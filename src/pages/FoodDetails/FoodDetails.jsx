@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import useAxios from "../hooks/useAxios";
+import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
-import { AuthContext } from "../Auth/AuthProvider";
+import { AuthContext } from "../../Auth/AuthProvider";
 import moment from "moment";
 
 const FoodDetails = () => {

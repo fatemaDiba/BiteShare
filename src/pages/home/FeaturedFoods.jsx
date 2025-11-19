@@ -1,55 +1,22 @@
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../../foodCard/Card";
-// import useAxios from "../../hooks/useAxios";
-// import { toast } from "react-toastify";
+import useAxios from "../../hooks/useAxios";
+import { toast } from "react-toastify";
 import { Link } from "react-router";
 import { MdFoodBank } from "react-icons/md";
 
-const data = [
-  {
-    _id: "1",
-    foodImg: "https://i.ibb.co/2g7fYq3/food1.jpg",
-    foodName: "Vegetable Fried Rice",
-    location: "Dhaka, Bangladesh",
-    exDate: "2025-10-30",
-    quantity: "3 boxes",
-    note: "Freshly cooked, vegetarian-friendly.",
-    status: "Available"
-  },
-  {
-    _id: "2",
-    foodImg: "https://i.ibb.co/TPtZp6k/food2.jpg",
-    foodName: "Chicken Biryani",
-    location: "Chittagong, Bangladesh",
-    exDate: "2025-10-28",
-    quantity: "5 plates",
-    note: "Stored properly, still warm.",
-    status: "Pending"
-  },
-  {
-    _id: "3",
-    foodImg: "https://i.ibb.co/CP0f5Pp/food3.jpg",
-    foodName: "Mixed Fruit Salad",
-    location: "Sylhet, Bangladesh",
-    exDate: "2025-10-27",
-    quantity: "2 bowls",
-    note: "Contains seasonal fruits, no preservatives.",
-    status: "Delivered"
-  }
-];
-
 const FeaturedFoods = () => {
-  // const [foods, setFoods] = useState([]);
-  // const axiosBase = useAxios();
+  const [foods, setFoods] = useState([]);
+  const axiosBase = useAxios();
 
-  // useEffect(() => {
-  //   axiosBase
-  //     .get("/foods/featured-foods")
-  //     .then((res) => setFoods(res.data))
-  //     .catch(() => {
-  //       toast.error("Something Went Wrong");
-  //     });
-  // }, []);
+  useEffect(() => {
+    axiosBase
+      .get("/foods/featured-foods")
+      .then((res) => setFoods(res.data))
+      .catch(() => {
+        toast.error("Something Went Wrong");
+      });
+  }, []);
 
   return (
     <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-10">
@@ -65,7 +32,7 @@ const FeaturedFoods = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-5 mb-10">
-        {data?.map((food) => {
+        {foods?.map((food) => {
           return <Card key={food._id} data={food}></Card>;
         })}
       </div>
