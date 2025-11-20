@@ -4,8 +4,6 @@ import Home from "../pages/home/Home";
 import Error from "../error/Error";
 import Login from "../pages/logReg/Login";
 import Register from "../pages/logReg/Register";
-import PrivateRoute from "../PrivateRoutes/private/PrivateRoute";
-import PrivateRegLog from "../PrivateRoutes/private/PrivateRegLog";
 import FoodDetails from "../pages/FoodDetails/FoodDetails";
 import Recipe from "../footerPage/Recipe";
 import PrivacyPolicy from "../footerPage/PrivacyPolicy";
@@ -26,6 +24,8 @@ import AddFood from "../pages/dashboard/AddFood/AddFood";
 import ManageMyFoods from "../pages/dashboard/ManageMyFoods/ManageMyFoods";
 import AvailableFoods from "../pages/AvailableFoods/AvailableFoods";
 import UpdateFood from "../pages/dashboard/UpdateFood/UpdateFood";
+import PrivateRoute from "../PrivateRoutes/PrivateRoute";
+import PrivateRegLog from "../PrivateRoutes/PrivateRegLog";
 
 const router = createBrowserRouter([
   {

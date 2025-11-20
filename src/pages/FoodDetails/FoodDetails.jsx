@@ -1,192 +1,132 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
 import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Auth/AuthProvider";
 import moment from "moment";
+import RequestFoodModal from "../../components/modals/RequestFoodModal";
+import BulkOrderModal from "../../components/modals/BulkOrderModal";
 
 const FoodDetails = () => {
-  const [currentDate, setCurrentDate] = useState("");
   const { id } = useParams();
-  const axiosBase = useAxios();
-  const [food, setFood] = useState({});
-  const [note, setNote] = useState();
-  const { user } = useContext(AuthContext);
-  const requestModal = useRef();
   const navigate = useNavigate();
+  const axiosBase = useAxios();
+  const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    const date = moment().format("DD-MM-YYYY");
-    setCurrentDate(date);
-  }, []);
+  const [food, setFood] = useState({});
+  const [currentDate] = useState(moment().format("DD-MM-YYYY"));
+  const [loading, setLoading] = useState(true);
 
-  const handleModal = () => {
-    if (user) {
-      return requestModal.current.showModal();
-    }
-    return navigate("/login");
-  };
-
-  const handleNote = (e) => {
-    const noteData = e.target.value;
-    setNote(noteData);
-  };
-
-  const handleRequest = () => {
-    const requestData = {
-      foodName: food.foodName,
-      location: food.location,
-      donner: food.userName,
-      exDate: food.exDate,
-      user: user.email,
-      note,
-      currentDate,
-    };
-
-    axiosBase
-      .post(`/foods/request-food/${id}`, requestData)
-      .then((res) => {
-        toast.success("Successfully Added Food To My Request");
-        requestModal.current.close();
-        navigate("/request-myfood");
-      })
-      .catch(() => {
-        toast.error("Something went wrong");
-      });
-  };
+  // Modal visibility state
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
+  const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
 
   useEffect(() => {
     axiosBase
-      .post("/foods/food-details", { id: id })
+      .post("/foods/food-details", { id })
       .then((res) => {
         setFood(res.data);
-        setNote(res.data.note);
+        setLoading(false);
       })
       .catch(() => {
-        toast.error("Something went wrong");
+        toast.error("Failed to load food details");
+        setLoading(false);
       });
-  }, []);
+  }, [id, axiosBase]);
+
+  const openRequestModal = () => {
+    if (!user) return navigate("/login");
+    setIsRequestModalOpen(true);
+  };
+
+  const openBulkModal = () => {
+    if (!user) return navigate("/login");
+    setIsBulkModalOpen(true);
+  };
+
+  if (loading) return <div className="text-center py-20">Loading...</div>;
 
   return (
-    <div>
-      {/* <Helmet>
-        <title>Food Details-BiteShare</title>
-      </Helmet> */}
-      <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-12 mt-28">
-        <div className="p-10 bg-light-secondary/50  rounded-2xl">
-          <div className="flex flex-col lg:flex-row gap-10 items-center">
-            <img src={food.foodImg} className="w-[50%] rounded-lg shadow-2xl" />
-            <div className="space-y-3  dark:text-white">
-              <h1 className="text-xl md:text-3xl text-black  dark:text-white font-bold mb-5">
-                {food.foodName}
-              </h1>
-              <p className="text-base md:text-lg font-semibold">
-                Quantity:
-                <span className="font-semibold ml-2  text-sm md:text-base">
-                  {food.quantity}
-                </span>
-              </p>
-              <p className="text-base md:text-lg font-semibold">
-                PickUp Location:
-                <span className="font-semibold ml-2  text-sm md:text-base">
-                  {food.location}
-                </span>
-              </p>
-              <p className="text-base md:text-lg font-semibold">
-                Expire Date:
-                <span className="font-semibold ml-2  text-sm md:text-base">
-                  {food.exDate}
-                </span>
-              </p>
-              <p className="text-base md:text-lg font-semibold">
-                Note:
-                <span className="font-semibold ml-2 text-sm md:text-base">
-                  {food.note}
-                </span>
-              </p>
-              <div className="flex flex-col md:flex-row gap-5 flex-wrap pt-10 ">
-                <button
-                  onClick={handleModal}
-                  className="btn text-black bg-amber-500 hover:bg-amber-600 dark:text-white"
-                >
-                  Request Food
-                </button>
+    <div className="w-11/12 sm:container xl:w-10/12 mx-auto mb-12 mt-28">
+      <div className="bg-white shadow-2xl rounded-2xl overflow-hidden p-6 sm:p-10">
+        <div className="flex flex-col lg:flex-row gap-10 items-start">
+          {/* Image Section */}
+          <div className="w-full lg:w-1/2 relative">
+            <img
+              src={food.foodImg}
+              alt={food.foodName}
+              className="w-full h-80 sm:h-[400px] lg:h-full object-cover rounded-xl shadow-lg"
+            />
+            {/* Expiry Date Top-Right */}
+            <div className="absolute top-4 right-4 bg-red-600 px-4 py-2 rounded-lg text-white text-sm font-semibold shadow">
+              Expires: {food.exDate}
+            </div>
+          </div>
 
-                {/* modal */}
-                <dialog ref={requestModal} className="modal">
-                  <div className="modal-box space-y-1 p-10">
-                    <h1 className="text-2xl md:text-4xl text-black  dark:text-white font-bold mb-5">
-                      {food.foodName}
-                    </h1>
-                    <p className="text-base  md:text-lg font-semibold">
-                      Quantity:
-                      <span className="font-semibold ml-2  text-sm md:text-base">
-                        {food.quantity}
-                      </span>
-                    </p>
-                    <p className="text-base md:text-lg font-semibold">
-                      PickUp Location:
-                      <span className="font-semibold ml-2  text-sm md:text-base">
-                        {food.location}
-                      </span>
-                    </p>
+          {/* Details Section */}
+          <div className="flex-1 space-y-6">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900">
+              {food.foodName}
+            </h1>
 
-                    <p className="text-base md:text-lg font-semibold">
-                      Expire Date:
-                      <span className="font-semibold ml-2  text-sm md:text-base">
-                        {food.exDate}
-                      </span>
-                    </p>
-                    <div className="text-base md:text-lg font-semibold">
-                      <p className="mb-2">Note:</p>
-                      <textarea
-                        className="textarea textarea-bordered"
-                        placeholder="Note"
-                        defaultValue={note}
-                        onChange={handleNote}
-                      ></textarea>
-                    </div>
-                    <ul>
-                      <p className="text-base md:text-lg font-semibold">
-                        Donner:
-                      </p>
-                      <li className="font-semibold ml-2 text-sm md:text-base">
-                        {food.userEmail}
-                      </li>
-                      <li className="font-semibold ml-2 text-sm md:text-base">
-                        {food.userName}
-                      </li>
-                    </ul>
-                    <p className="text-base md:text-lg font-semibold">
-                      User Email:
-                      <span className="font-semibold ml-2 text-black/70 text-sm md:text-base">
-                        {user?.email}
-                      </span>
-                    </p>
-                    <p className="text-base md:text-lg font-semibold">
-                      Request Time:
-                      <span className="font-semibold ml-2  text-sm md:text-base">
-                        {currentDate}
-                      </span>
-                    </p>
-                    <div className="modal-action">
-                      <form method="dialog">
-                        <button
-                          onClick={handleRequest}
-                          className="btn bg-purple-400 text-black font-bold"
-                        >
-                          Request
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </dialog>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <p className="text-sm text-gray-500">Quantity</p>
+                <p className="text-lg font-semibold text-gray-800">{food.quantity}</p>
               </div>
+              <div className="space-y-1">
+                <p className="text-sm text-gray-500">Bulk Price</p>
+                <p className="text-lg font-semibold text-gray-800">${food.price}</p>
+              </div>
+              <div className="space-y-1 sm:col-span-2">
+                <p className="text-sm text-gray-500">Pickup Location</p>
+                <p className="text-lg font-semibold text-gray-800">{food.location}</p>
+              </div>
+              <div className="space-y-1 sm:col-span-2">
+                <p className="text-sm text-gray-500">Description</p>
+                <p className="text-gray-700">{food.description}</p>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              <button
+                onClick={openRequestModal}
+                className="btn w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-white font-semibold shadow-md transform transition hover:scale-105"
+              >
+                Request Food
+              </button>
+              <button
+                onClick={openBulkModal}
+                className="btn w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-semibold shadow-md transform transition hover:scale-105"
+              >
+                Bulk Order
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <RequestFoodModal
+        isOpen={isRequestModalOpen}
+        onClose={() => setIsRequestModalOpen(false)}
+        food={food}
+        user={user}
+        currentDate={currentDate}
+        axiosBase={axiosBase}
+        foodId={id}
+        navigate={navigate}
+      />
+      <BulkOrderModal
+        isOpen={isBulkModalOpen}
+        onClose={() => setIsBulkModalOpen(false)}
+        food={food}
+        user={user}
+        axiosBase={axiosBase}
+      />
     </div>
+
   );
 };
 

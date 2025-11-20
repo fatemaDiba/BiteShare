@@ -3,7 +3,7 @@ import Card from "../../foodCard/Card";
 import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
 import { Link } from "react-router";
-import { MdFoodBank } from "react-icons/md";
+import { BiFoodMenu } from "react-icons/bi";
 
 const FeaturedFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -39,10 +39,10 @@ const FeaturedFoods = () => {
       <div className="text-center">
         <Link
           to="/available-foods"
-          className="btn bg-amber-500 hover:bg-amber-600 font-semibold text-center text-black px-5"
+          className="btn bg-amber-500 hover:bg-amber-600 text-black px-6 inline-flex items-center justify-center gap-3"
         >
           Show All Foods
-          <MdFoodBank className="mr-2 text-xl" />
+          <BiFoodMenu className="text-xl" />
         </Link>
       </div>
     </div>

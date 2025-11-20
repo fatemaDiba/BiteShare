@@ -64,7 +64,7 @@ const AvailableFoods = () => {
             and expiration times to claim your food before it's gone.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:justify-items-center mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-3 md:justify-items-end mb-14">
           {/* search bar */}
           <div className="col-span-2 md:col-span-1">
             <label className="input input-bordered  flex items-center gap-2">
