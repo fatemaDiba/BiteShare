@@ -3,12 +3,13 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
 
 const BulkOrderModal = ({ isOpen, onClose, food, user, axiosBase }) => {
-  const [form, setForm] = useState({
+  const initialFormState = {
     quantity: 1,
     deliveryDate: "",
     address: "",
     description: "",
-  });
+  }
+  const [form, setForm] = useState(initialFormState);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,6 +22,12 @@ const BulkOrderModal = ({ isOpen, onClose, food, user, axiosBase }) => {
     onClose();
   };
 
+  const handleClose = () => {
+    setForm(initialFormState);
+    onClose();
+  };
+
+
   if (!isOpen) return null;
 
   const total = form.quantity * (food.price || 0);
@@ -29,7 +36,7 @@ const BulkOrderModal = ({ isOpen, onClose, food, user, axiosBase }) => {
     <dialog open className="modal">
       <div className="modal-box p-6 sm:p-10 relative max-w-3xl w-full">
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="absolute top-4 right-4 hover:scale-110 transition cursor-pointer"
         >
           <IoIosCloseCircleOutline className="text-3xl" />

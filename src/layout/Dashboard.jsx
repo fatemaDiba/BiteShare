@@ -23,7 +23,7 @@ const Dashboard = () => {
           className="flex-1 overflow-y-auto bg-linear-to-br from-amber-50/30 via-orange-50/20 to-yellow-50/30"
           onClick={closeMobileMenu} // Close mobile menu when clicking content
         >
-          <div className="max-w-7xl mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
             <Outlet />
           </div>
         </main>

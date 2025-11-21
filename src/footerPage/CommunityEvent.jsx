@@ -5,7 +5,7 @@ const CommunityEvent = () => {
       {/* <Helmet>
         <title>Community Event-BiteShare</title>
       </Helmet> */}
-      <section className="w-11/12 sm:container xl:w-10/12 mx-auto bg-[#faf4e9] mt-28 mb-12 md:mb-20 rounded-xl py-12">
+      <section className="w-11/12 sm:container xl:w-10/12 mx-auto mt-28 mb-12 md:mb-20 rounded-xl py-12">
         <div className="px-5">
           <h2 className="text-xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-12">
             BiteShare Community Events
@@ -19,11 +19,11 @@ const CommunityEvent = () => {
                 alt="Community Event 1"
                 className="w-full h-48 object-cover"
               />
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col grow">
                 <h3 className="text-xl font-semibold text-gray-800">
                   Food Drive for Families
                 </h3>
-                <p className="text-gray-600 mt-2 flex-grow">
+                <p className="text-gray-600 mt-2 grow">
                   Join us to distribute fresh meals to families in need in your
                   community.
                 </p>
@@ -40,11 +40,11 @@ const CommunityEvent = () => {
                 alt="Community Event 2"
                 className="w-full h-48 object-cover"
               />
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col grow">
                 <h3 className="text-xl font-semibold text-gray-800">
                   Cook & Share Meetup
                 </h3>
-                <p className="text-gray-600 mt-2 flex-grow">
+                <p className="text-gray-600 mt-2 grow">
                   A fun evening where members cook and share meals together!
                 </p>
                 <div className="mt-4 text-right">
@@ -60,11 +60,11 @@ const CommunityEvent = () => {
                 alt="Community Event 3"
                 className="w-full h-48 object-cover"
               />
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col grow">
                 <h3 className="text-xl font-semibold text-gray-800">
                   Leftover Lunch Day
                 </h3>
-                <p className="text-gray-600 mt-2 flex-grow">
+                <p className="text-gray-600 mt-2 grow">
                   Encouraging food sharing and minimizing waste by sharing
                   leftovers.
                 </p>
@@ -81,11 +81,11 @@ const CommunityEvent = () => {
                 alt="Community Event 4"
                 className="w-full h-48 object-cover"
               />
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col grow">
                 <h3 className="text-xl font-semibold text-gray-800">
                   Farmers' Market Collaboration
                 </h3>
-                <p className="text-gray-600 mt-2 flex-grow">
+                <p className="text-gray-600 mt-2 grow">
                   Collaborating with local farmers to provide fresh produce to
                   the community.
                 </p>

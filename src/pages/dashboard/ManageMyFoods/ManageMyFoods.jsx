@@ -6,8 +6,6 @@ import Loading from "../../../loading/Loading";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { RiDeleteBin5Fill } from "react-icons/ri";
-import { FaPencil } from "react-icons/fa6";
 import ManageFoodCard from "../../../components/dashboard/ManageFoodCard";
 
 const ManageMyFoods = () => {
@@ -67,57 +65,50 @@ const ManageMyFoods = () => {
     );
 
   return (
-    <div className="min-h-screen bg-linear-to-r from-amber-50 via-orange-50 to-yellow-50 py-10 ">
-      <div className="max-w-7xl mx-auto">
-
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
-            Manage <span className="text-amber-600">My Foods</span>
-          </h1>
-          <p className="text-gray-600 mt-3 text-lg">
-            Update or remove foods you've shared
-          </p>
-        </div>
-
-        {/* Count */}
-        <div className="text-center mb-8">
-          <span className="inline-block px-8 py-4 bg-linear-to-r from-amber-500 to-orange-600 text-white font-bold text-xl rounded-full shadow-xl">
-            {foods.length} Food{foods.length !== 1 ? "s" : ""} Listed
-          </span>
-        </div>
-
-        {/* Empty State */}
-        {foods.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="bg-white rounded-3xl shadow-2xl p-16 max-w-lg mx-auto border border-amber-100">
-              <div className="text-6xl mb-6 text-gray-300">No foods yet</div>
-              <p className="text-gray-600 text-lg mb-8">
-                You haven't shared any food yet. Start helping others!
-              </p>
-              <Link
-                to="/add-food"
-                className="btn bg-linear-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold text-lg px-10 py-4 rounded-xl shadow-lg"
-              >
-                Add Your First Food
-              </Link>
-            </div>
-          </div>
-        ) : (
-
-          /* Responsive Card Grid */
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {foods.map((food, index) => (
-              <ManageFoodCard
-                key={food._id}
-                food={food}
-                index={index}
-                handleDelete={handleDelete}
-              />
-            ))}
-          </div>
-        )}
+    <div>
+      {/* Header */}
+      <div className="mb-10">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
+          My Foods
+        </h1>
+        <p className="text-gray-600 mt-3 text-lg mb-2">
+          Update or remove foods you've shared
+        </p>
+        <p className="text-lg text-gray-600">
+          Food{foods.length !== 1 ? "s" : ""} Listed: <span className="font-bold text-amber-600">{foods.length}</span>
+        </p>
       </div>
+
+      {/* Empty State */}
+      {foods.length === 0 ? (
+        <div className="text-center py-20">
+          <div className="bg-white rounded-3xl shadow-2xl p-16 max-w-lg mx-auto border border-amber-100">
+            <div className="text-6xl mb-6 text-gray-300">No foods yet</div>
+            <p className="text-gray-600 text-lg mb-8">
+              You haven't shared any food yet. Start helping others!
+            </p>
+            <Link
+              to="/add-food"
+              className="btn bg-linear-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold text-lg px-10 py-4 rounded-xl shadow-lg"
+            >
+              Add Your First Food
+            </Link>
+          </div>
+        </div>
+      ) : (
+
+        /* Responsive Card Grid */
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+          {foods.map((food, index) => (
+            <ManageFoodCard
+              key={food._id}
+              food={food}
+              index={index}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

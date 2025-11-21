@@ -12,7 +12,7 @@ const RequestFoodModal = ({
   foodId,
   navigate,
 }) => {
-  const [note, setNote] = useState(food.note || "");
+  const [note, setNote] = useState("");
 
   const handleRequest = () => {
     const requestData = {
@@ -35,6 +35,12 @@ const RequestFoodModal = ({
       .catch(() => toast.error("Something went wrong"));
   };
 
+  const handleClose = () => {
+    setNote("");
+    onClose();
+  };
+
+
   if (!isOpen) return null;
 
   return (
@@ -42,8 +48,8 @@ const RequestFoodModal = ({
       <div className="modal-box p-6 sm:p-10 relative max-w-3xl w-full">
         {/* Close Button */}
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 hover:scale-110 transition"
+          onClick={handleClose}
+          className="absolute top-4 right-4 hover:scale-110 transition cursor-pointer"
         >
           <IoIosCloseCircleOutline className="text-3xl" />
         </button>
