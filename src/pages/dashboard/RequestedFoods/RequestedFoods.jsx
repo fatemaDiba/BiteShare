@@ -18,24 +18,30 @@ const RequestedFoods = () => {
       .catch(() => toast.error("Failed to load requested foods!"));
   }, [axiosSecure, user?.email]);
 
+  console.log(foods);
+
   return (
     <div>
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
-          My Food Requests
+          My Requested Foods
         </h1>
         <p className="text-lg text-gray-600">
-          Total Requests: <span className="font-bold text-amber-600">{foods.length}</span>
+          Total Requests:{" "}
+          <span className="font-bold text-amber-600">{foods.length}</span>
         </p>
       </div>
 
       {/* Empty State */}
       {foods.length === 0 ? (
         <div className="text-center py-20">
-          <div className="text-8xl mb-4">Neutral Face</div>
-          <h3 className="text-2xl font-semibold text-gray-600">No requests found</h3>
-          <p className="text-gray-500 mt-2">Your requested foods will appear here</p>
+          <h3 className="text-2xl font-semibold text-gray-600">
+            No requests found
+          </h3>
+          <p className="text-gray-500 mt-2">
+            Your requested foods will appear here
+          </p>
         </div>
       ) : (
         /* Beautiful Table */
@@ -55,15 +61,7 @@ const RequestedFoods = () => {
             </thead>
             <tbody className="bg-white divide-y divide-gray-100">
               {foods.map((food, index) => {
-                const isExpired = moment(food.exDate, "DD-MM-YYYY").isBefore(moment(), "day");
-
-                const requestDate = food.currentDate
-                  ? moment(food.currentDate, "DD-MM-YYYY").format("DD MMM YYYY")
-                  : "—";
-
-                const expireDate = moment(food.exDate, "DD-MM-YYYY").format("DD MMM YYYY");
-
-
+                const isExpired = new Date(food.exDate) < new Date();
                 return (
                   <tr
                     key={food._id}
@@ -99,27 +97,31 @@ const RequestedFoods = () => {
                     <td className="px-6 py-5 text-gray-700">{food.location}</td>
 
                     {/* Requested Date */}
-                    <td className="px-6 py-5 text-gray-700">{requestDate}</td>
+                    <td className="px-6 py-5 text-gray-700">
+                      {food.requestedDate || "-"}
+                    </td>
 
                     {/* Expire Date */}
                     <td className="px-6 py-5">
                       <span
-                        className={`font-bold ${isExpired ? "text-red-600" : "text-green-600"
-                          }`}
+                        className={`font-bold ${
+                          isExpired ? "text-red-600" : "text-green-600"
+                        }`}
                       >
-                        {expireDate}
+                        {new Date(food.exDate).toLocaleDateString()}
                       </span>
                     </td>
 
                     {/* Status */}
                     <td className="px-6 py-5 text-center">
                       <span
-                        className={`inline-block px-4 py-2 rounded-full text-xs font-bold text-white ${isExpired
-                          ? "bg-red-500"
-                          : food.requestStatus === "Delivered"
+                        className={`inline-block px-4 py-2 rounded-full text-xs font-bold text-white ${
+                          isExpired
+                            ? "bg-red-500"
+                            : food.requestStatus === "Delivered"
                             ? "bg-blue-500"
                             : "bg-amber-500"
-                          }`}
+                        }`}
                       >
                         {isExpired
                           ? "Expired"

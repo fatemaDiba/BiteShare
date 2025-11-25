@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Loading from "../../loading/Loading";
 import useAxios from "../../hooks/useAxios";
-
+import Pagination from "../../components/Pagination";
 
 const AvailableFoods = () => {
   const [foods, setFoods] = useState([]);
@@ -11,10 +11,27 @@ const AvailableFoods = () => {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [grid, setGrid] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pagination, setPagination] = useState(null);
 
   const handleSearch = (e) => {
-    const query = e.target.value;
-    setQuery(query);
+    const searchQuery = e.target.value;
+    setQuery(searchQuery);
+    setCurrentPage(1); // Reset to first page on search
+
+    // Fetch foods with search query
+    setLoading(true);
+    axiosBase
+      .get(`/foods/available-foods?search=${searchQuery}&page=1`)
+      .then((res) => {
+        setFoods(res.data.foods);
+        setPagination(res.data.pagination);
+        setLoading(false);
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+        setLoading(false);
+      });
   };
 
   const handleLayout = () => {
@@ -24,27 +41,58 @@ const AvailableFoods = () => {
   useEffect(() => {
     setLoading(true);
     axiosBase
-      .get("/foods/available-foods")
+      .get(`/foods/available-foods?status=Available&page=${currentPage}`)
       .then((res) => {
-        setFoods(res.data);
+        setFoods(res.data.foods);
+        setPagination(res.data.pagination);
         setLoading(false);
       })
       .catch(() => {
         toast.error("Something went wrong");
+        setLoading(false);
       });
-  }, []);
-
-  const filteredFood = foods?.filter((food) => {
-    return food.foodName.toLowerCase().includes(query?.toLowerCase());
-  });
+  }, [currentPage]);
 
   const handleSortByQuantity = (e) => {
     const sortValue = e.target.value;
+    setCurrentPage(1); // Reset to first page on sort
+
+    if (!sortValue) {
+      // Reset to default (no sorting)
+      setLoading(true);
+      axiosBase
+        .get("/foods/available-foods?status=Available&page=1")
+        .then((res) => {
+          setFoods(res.data.foods);
+          setPagination(res.data.pagination);
+          setLoading(false);
+        })
+        .catch(() => {
+          toast.error("Something went wrong");
+          setLoading(false);
+        });
+      return;
+    }
+
     setLoading(true);
-    axiosBase.post("/foods/sort-by-quantity", { sortValue }).then((res) => {
-      setFoods(res.data);
-      setLoading(false);
-    });
+    axiosBase
+      .get(
+        `/foods/available-foods?status=Available&sortBy=quantity&sortOrder=${sortValue}&page=1`
+      )
+      .then((res) => {
+        setFoods(res.data.foods);
+        setPagination(res.data.pagination);
+        setLoading(false);
+      })
+      .catch(() => {
+        toast.error("Something went wrong");
+        setLoading(false);
+      });
+  };
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -97,10 +145,10 @@ const AvailableFoods = () => {
               <option defaultValue value="">
                 Sort by (Default)
               </option>
-              <option className="font-semibold" value="1">
+              <option className="font-semibold" value="asc">
                 Low Quantity
               </option>
-              <option className="font-semibold" value="-1">
+              <option className="font-semibold" value="desc">
                 High Quantity
               </option>
             </select>
@@ -120,13 +168,21 @@ const AvailableFoods = () => {
         ) : (
           <>
             <div
-              className={`grid grid-cols-1 sm:grid-cols-2 ${grid ? "lg:grid-cols-4" : "lg:grid-cols-3"
-                } gap-6`}
+              className={`grid grid-cols-1 sm:grid-cols-2 ${
+                grid ? "lg:grid-cols-4" : "lg:grid-cols-3"
+              } gap-6`}
             >
-              {filteredFood?.map((food) => {
+              {foods?.map((food) => {
                 return <Card key={food._id} data={food}></Card>;
               })}
             </div>
+
+            {/* Pagination Controls */}
+            <Pagination
+              pagination={pagination}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+            />
           </>
         )}
       </div>

@@ -139,7 +139,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/request-myfood",
+        path: "/dashboard/my-requested-foods",
         element: (
           <PrivateRoute>
             <RequestedFoods></RequestedFoods>
@@ -154,7 +154,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-    ]
+    ],
   },
 ]);
 export default router;

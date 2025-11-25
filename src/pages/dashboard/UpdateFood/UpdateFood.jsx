@@ -41,16 +41,19 @@ const UpdateFood = () => {
     };
 
     // Simple validation
-    if (updatedData.foodName.length < 2) return toast.error("Food name too short");
-    if (updatedData.description.length < 10) return toast.error("Description must be 10+ characters");
-    if (updatedData.quantity < 1) return toast.error("Quantity must be at least 1");
+    if (updatedData.foodName.length < 2)
+      return toast.error("Food name too short");
+    if (updatedData.description.length < 10)
+      return toast.error("Description must be 10+ characters");
+    if (updatedData.quantity < 1)
+      return toast.error("Quantity must be at least 1");
     if (updatedData.price < 0) return toast.error("Price cannot be negative");
 
     axiosBase
       .put(`/foods/update-food/${id}`, updatedData)
       .then(() => {
         toast.success("Food updated successfully!");
-        navigate("/manage-myfoods");
+        navigate("/dashboard/manage-myfoods");
       })
       .catch(() => toast.error("Update failed"));
   };
@@ -65,8 +68,9 @@ const UpdateFood = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-30 px-4">
-      <div className="max-w-4xl mx-auto"> {/* Controlled max width */}
-
+      <div className="max-w-4xl mx-auto">
+        {" "}
+        {/* Controlled max width */}
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
@@ -74,24 +78,22 @@ const UpdateFood = () => {
           </h1>
           <p className="text-gray-600 mt-2">Edit details and save changes</p>
         </div>
-
         {/* Compact & Beautiful Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-
           {/* Header */}
-          <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-5 text-center">
+          <div className="bg-linear-to-r from-amber-500 to-orange-600 text-white p-5 text-center">
             <h2 className="text-2xl font-bold">Edit Food Information</h2>
           </div>
 
           {/* Form Body */}
           <div className="p-6 md:p-8">
             <form onSubmit={handleUpdate} className="space-y-6">
-
               {/* 2-Column Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Food Name</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Food Name
+                  </label>
                   <input
                     type="text"
                     name="foodName"
@@ -103,7 +105,9 @@ const UpdateFood = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Food Image URL</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Food Image URL
+                  </label>
                   <input
                     type="url"
                     name="foodImg"
@@ -115,7 +119,9 @@ const UpdateFood = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Pickup Location</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Pickup Location
+                  </label>
                   <input
                     type="text"
                     name="location"
@@ -127,7 +133,9 @@ const UpdateFood = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Quantity</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Quantity
+                  </label>
                   <input
                     type="number"
                     name="quantity"
@@ -139,7 +147,9 @@ const UpdateFood = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Expiry Date</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Expiry Date
+                  </label>
                   <input
                     type="date"
                     name="date"
@@ -150,9 +160,13 @@ const UpdateFood = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Price per Item ($)</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Price per Item ($)
+                  </label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 font-bold">$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 font-bold">
+                      $
+                    </span>
                     <input
                       type="number"
                       name="price"
@@ -169,7 +183,9 @@ const UpdateFood = () => {
 
               {/* Description - Full Width */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Description
+                </label>
                 <textarea
                   name="description"
                   rows="4"
@@ -180,24 +196,11 @@ const UpdateFood = () => {
                 />
               </div>
 
-              {/* Donor Info */}
-              <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 flex items-center gap-4">
-                <img
-                  src={user?.photoURL || "/default-avatar.png"}
-                  alt="You"
-                  className="w-14 h-14 rounded-full border-4 border-white shadow"
-                />
-                <div>
-                  <p className="font-semibold text-gray-800">{user?.displayName}</p>
-                  <p className="text-sm text-gray-600">{user?.email}</p>
-                </div>
-              </div>
-
               {/* Submit Button */}
               <div className="text-center pt-4">
                 <button
                   type="submit"
-                  className="btn bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold text-lg px-10 py-4 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200"
+                  className="btn bg-linear-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold text-lg px-10 py-4 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200"
                 >
                   Update Food
                 </button>

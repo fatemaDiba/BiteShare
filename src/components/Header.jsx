@@ -42,12 +42,15 @@ const Header = () => {
 
   return (
     <header className="w-full py-2 fixed z-50 top-0 bg-light-secondary/90 shadow-xl backdrop-blur-sm">
-      <div className="navbar justify-between w-11/12 sm:container xl:w-10/12 mx-auto !items-center">
+      <div className="navbar justify-between w-11/12 sm:container xl:w-10/12 mx-auto items-center!">
         <div className="">
-          <a className="flex gap-3 items-center text-xl  md:text-3xl font-bold ml-3">
+          <Link
+            to="/"
+            className="flex gap-3 items-center text-xl  md:text-3xl font-bold ml-3"
+          >
             <img src="/assets/logo.png" alt="" className="w-12 md:w-14" />
             BiteShare
-          </a>
+          </Link>
         </div>
 
         <div>
@@ -77,12 +80,11 @@ const Header = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu-sm dropdown-content bg-base-100 rounded-box z-[30] mt-3 w-52 p-2 shadow right-0"
+              className="menu-sm dropdown-content bg-base-100 rounded-box z-30 mt-3 w-52 p-2 shadow right-0"
             >
               {navList}
             </ul>
           </div>
-
         </div>
       </div>
     </header>

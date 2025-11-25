@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 const RequestFoodModal = ({
   isOpen,
@@ -22,7 +23,7 @@ const RequestFoodModal = ({
       exDate: food.exDate,
       user: user.email,
       note,
-      currentDate,
+      requestedDate: currentDate,
     };
 
     axiosBase
@@ -30,16 +31,19 @@ const RequestFoodModal = ({
       .then(() => {
         toast.success("Food requested successfully!");
         onClose();
-        navigate("/request-myfood");
+        navigate("/dashboard/my-requested-foods");
       })
-      .catch(() => toast.error("Something went wrong"));
+      .catch((err) => {
+        const errorMessage =
+          err.response?.data?.message || "Something went wrong";
+        toast.error(errorMessage);
+      });
   };
 
   const handleClose = () => {
     setNote("");
     onClose();
   };
-
 
   if (!isOpen) return null;
 
@@ -71,7 +75,9 @@ const RequestFoodModal = ({
           </div>
           <div className="space-y-1">
             <p className="font-semibold">Expires:</p>
-            <p className="text-gray-700">{food.exDate}</p>
+            <p className="text-gray-700">
+              {moment(food.exDate).format("DD-MM-YYYY")}
+            </p>
           </div>
           <div className="space-y-1">
             <p className="font-semibold">Request Date:</p>

@@ -75,7 +75,8 @@ const ManageMyFoods = () => {
           Update or remove foods you've shared
         </p>
         <p className="text-lg text-gray-600">
-          Food{foods.length !== 1 ? "s" : ""} Listed: <span className="font-bold text-amber-600">{foods.length}</span>
+          Food{foods.length !== 1 ? "s" : ""} Listed:{" "}
+          <span className="font-bold text-amber-600">{foods.length}</span>
         </p>
       </div>
 
@@ -88,7 +89,7 @@ const ManageMyFoods = () => {
               You haven't shared any food yet. Start helping others!
             </p>
             <Link
-              to="/add-food"
+              to="/dashboard/add-food"
               className="btn bg-linear-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-bold text-lg px-10 py-4 rounded-xl shadow-lg"
             >
               Add Your First Food
@@ -96,7 +97,6 @@ const ManageMyFoods = () => {
           </div>
         </div>
       ) : (
-
         /* Responsive Card Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
           {foods.map((food, index) => (

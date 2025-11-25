@@ -22,8 +22,10 @@ const AddFood = () => {
     const price = Number(form.price.value);
 
     // Validation
-    if (foodName.length < 2) return toast.error("Food name must be at least 2 characters");
-    if (description.length < 10) return toast.error("Description must be at least 10 characters");
+    if (foodName.length < 2)
+      return toast.error("Food name must be at least 2 characters");
+    if (description.length < 10)
+      return toast.error("Description must be at least 10 characters");
     if (quantity < 1) return toast.error("Quantity must be at least 1");
     if (price < 0) return toast.error("Price cannot be negative");
     if (!exDate) return toast.error("Please select expiry date");
@@ -33,7 +35,7 @@ const AddFood = () => {
       foodImg,
       location,
       quantity,
-      exDate,
+      exDate: new Date(exDate).toISOString(),
       description,
       price,
       userEmail: user?.email,
@@ -69,12 +71,13 @@ const AddFood = () => {
           {/* Form Body */}
           <div className="p-6 md:p-8">
             <form onSubmit={handleAddFoodBtn} className="space-y-6">
-
               {/* 2-Column Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Food Name */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Food Name</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Food Name
+                  </label>
                   <input
                     type="text"
                     name="foodName"
@@ -86,7 +89,9 @@ const AddFood = () => {
 
                 {/* Food Image URL */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Food Image URL</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Food Image URL
+                  </label>
                   <input
                     type="url"
                     name="foodImg"
@@ -98,7 +103,9 @@ const AddFood = () => {
 
                 {/* Pickup Location */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Pickup Location</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Pickup Location
+                  </label>
                   <input
                     type="text"
                     name="location"
@@ -110,7 +117,9 @@ const AddFood = () => {
 
                 {/* Quantity */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Quantity (servings)</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Quantity (servings)
+                  </label>
                   <input
                     type="number"
                     name="quantity"
@@ -123,7 +132,9 @@ const AddFood = () => {
 
                 {/* Expiry Date */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Expiry Date</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Expiry Date
+                  </label>
                   <input
                     type="date"
                     name="date"
@@ -134,9 +145,13 @@ const AddFood = () => {
 
                 {/* Price per Item */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Bulk Order Price (per item)</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Bulk Order Price (per item)
+                  </label>
                   <div className="relative">
-                    <span className="absolute left-5 top-1/2 -translate-y-1/2 text-xl font-bold text-amber-600">$</span>
+                    <span className="absolute left-5 top-1/2 -translate-y-1/2 text-xl font-bold text-amber-600">
+                      $
+                    </span>
                     <input
                       type="number"
                       name="price"
@@ -152,7 +167,9 @@ const AddFood = () => {
 
               {/* Description */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Description
+                </label>
                 <textarea
                   name="description"
                   rows="5"

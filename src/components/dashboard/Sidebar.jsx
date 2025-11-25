@@ -13,9 +13,21 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
 
   const navItems = [
     { name: "Home", icon: <BiHome className="text-2xl" />, path: "/dashboard" },
-    { name: "Add Food", icon: <RiStickyNoteAddLine className="text-2xl" />, path: "/dashboard/add-food" },
-    { name: "My Foods", icon: <GrUpdate className="text-xl" />, path: "/dashboard/manage-myfoods" },
-    { name: "Requested Foods", icon: <BsFolder2 className="text-2xl" />, path: "/dashboard/request-myfood" },
+    {
+      name: "Add Food",
+      icon: <RiStickyNoteAddLine className="text-2xl" />,
+      path: "/dashboard/add-food",
+    },
+    {
+      name: "My Foods",
+      icon: <GrUpdate className="text-xl" />,
+      path: "/dashboard/manage-myfoods",
+    },
+    {
+      name: "Requested Foods",
+      icon: <BsFolder2 className="text-2xl" />,
+      path: "/dashboard/my-requested-foods",
+    },
   ];
 
   return (
@@ -49,9 +61,10 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
               />
               <h2
                 className={`origin-left whitespace-nowrap text-xl font-bold text-slate-800 transition-all duration-300
-                  ${isCollapsed
-                    ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden"
-                    : "lg:max-w-none lg:scale-100 lg:opacity-100"
+                  ${
+                    isCollapsed
+                      ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden"
+                      : "lg:max-w-none lg:scale-100 lg:opacity-100"
                   } hidden lg:block
                 `}
               >
@@ -73,7 +86,11 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
                 onClick={() => setIsCollapsed(!isCollapsed)}
                 className="hidden lg:flex cursor-pointer items-center justify-center rounded-full bg-blue-100 text-blue-600 p-1.5 transition-all hover:scale-110 hover:bg-blue-200"
               >
-                {isCollapsed ? <PiCaretRightBold className="text-sm" /> : <PiCaretLeftBold className="text-sm" />}
+                {isCollapsed ? (
+                  <PiCaretRightBold className="text-sm" />
+                ) : (
+                  <PiCaretLeftBold className="text-sm" />
+                )}
               </button>
             </div>
           </div>
@@ -86,11 +103,16 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
                 to={item.path}
                 onClick={() => setIsMobileOpen(false)}
                 className={`group relative flex items-center rounded-xl transition-all duration-200
-                  ${location.pathname === item.path
-                    ? "bg-blue-100 text-blue-800 shadow-md shadow-blue-200/50 font-semibold"
-                    : "text-slate-700 hover:bg-blue-100 hover:text-blue-700"
+                  ${
+                    location.pathname === item.path
+                      ? "bg-blue-100 text-blue-800 shadow-md shadow-blue-200/50 font-semibold"
+                      : "text-slate-700 hover:bg-blue-100 hover:text-blue-700"
                   }
-                  ${isCollapsed ? "lg:justify-center py-3" : "justify-start px-3 py-2.5"}
+                  ${
+                    isCollapsed
+                      ? "lg:justify-center py-3"
+                      : "justify-start px-3 py-2.5"
+                  }
                 `}
               >
                 <div className="flex h-10 w-10 items-center justify-center shrink-0">
@@ -99,9 +121,10 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
 
                 <span
                   className={`ml-3 whitespace-nowrap text-sm font-medium transition-all duration-300
-                    ${isCollapsed
-                      ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden lg:ml-0"
-                      : "lg:max-w-none lg:scale-100 lg:opacity-100"
+                    ${
+                      isCollapsed
+                        ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden lg:ml-0"
+                        : "lg:max-w-none lg:scale-100 lg:opacity-100"
                     }`}
                 >
                   {item.name}
