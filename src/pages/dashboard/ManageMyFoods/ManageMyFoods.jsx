@@ -1,40 +1,48 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import Loading from "../../../loading/Loading";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient, keepPreviousData } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import ManageFoodCard from "../../../components/dashboard/ManageFoodCard";
+import Pagination from "../../../components/Pagination";
 
 const ManageMyFoods = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
   const {
-    data: foods = [],
+    data,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["manageMyFoods", user?.email],
+    queryKey: ["manageMyFoods", user?.email, currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.post("/foods/manage-myfoods", {
-        email: user?.email,
-      });
+      const res = await axiosSecure.post(
+        `/foods/manage-myfoods?page=${currentPage}&limit=${itemsPerPage}`,
+        {
+          email: user?.email,
+        }
+      );
       return res.data;
     },
     enabled: !!user?.email,
+    placeholderData: keepPreviousData,
   });
 
+  const foods = data?.foods || [];
+  const pagination = data?.pagination;
+
   const deleteMutation = useMutation({
-    mutationFn: (id) => axiosSecure.delete(`/foods/available-foods/${id}`),
-    onSuccess: (_, id) => {
+    mutationFn: (id) => axiosSecure.delete(`/foods/all-foods/${id}`),
+    onSuccess: () => {
       toast.success("Food deleted successfully!");
-      queryClient.setQueryData(["manageMyFoods", user?.email], (old = []) =>
-        old.filter((food) => food._id !== id)
-      );
+      queryClient.invalidateQueries(["manageMyFoods", user?.email]);
     },
     onError: () => toast.error("Failed to delete food"),
   });
@@ -76,7 +84,7 @@ const ManageMyFoods = () => {
         </p>
         <p className="text-lg text-gray-600">
           Food{foods.length !== 1 ? "s" : ""} Listed:{" "}
-          <span className="font-bold text-amber-600">{foods.length}</span>
+          <span className="font-bold text-amber-600">{pagination?.totalItems || foods.length}</span>
         </p>
       </div>
 
@@ -98,16 +106,27 @@ const ManageMyFoods = () => {
         </div>
       ) : (
         /* Responsive Card Grid */
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
-          {foods.map((food, index) => (
-            <ManageFoodCard
-              key={food._id}
-              food={food}
-              index={index}
-              handleDelete={handleDelete}
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+            {foods.map((food, index) => (
+              <ManageFoodCard
+                key={food._id}
+                food={food}
+                index={index}
+                handleDelete={handleDelete}
+              />
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <div className="flex justify-center my-8">
+            <Pagination
+              pagination={pagination}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
             />
-          ))}
-        </div>
+          </div>
+        </>
       )}
     </div>
   );

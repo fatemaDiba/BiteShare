@@ -18,11 +18,10 @@ import CommunityEvent from "../footerPage/CommunityEvent";
 import Donate from "../pages/home/unique/Donate";
 import Dashboard from "../layout/Dashboard";
 import DashHome from "../pages/dashboard/home/DashHome";
-import Profile from "../components/dashboard/Profile";
 import RequestedFoods from "../pages/dashboard/RequestedFoods/RequestedFoods";
 import AddFood from "../pages/dashboard/AddFood/AddFood";
 import ManageMyFoods from "../pages/dashboard/ManageMyFoods/ManageMyFoods";
-import AvailableFoods from "../pages/AvailableFoods/AvailableFoods";
+import AllFoods from "../pages/AllFoods/AllFoods";
 import UpdateFood from "../pages/dashboard/UpdateFood/UpdateFood";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import PrivateRegLog from "../PrivateRoutes/PrivateRegLog";
@@ -38,8 +37,8 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/available-foods",
-        element: <AvailableFoods></AvailableFoods>,
+        path: "/all-foods",
+        element: <AllFoods></AllFoods>,
       },
       {
         path: "/login",
@@ -62,14 +61,6 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <FoodDetails></FoodDetails>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/update-food/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateFood></UpdateFood>
           </PrivateRoute>
         ),
       },
@@ -135,6 +126,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddFood></AddFood>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/update-food/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateFood></UpdateFood>
           </PrivateRoute>
         ),
       },

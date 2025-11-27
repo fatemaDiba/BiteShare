@@ -22,7 +22,7 @@ const Banner = () => {
               with a community that loves food as much as you do.
             </p>
             <a
-              href="/available-foods"
+              href="/all-foods"
               className="btn border-0 bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg"
             >
               Explore More

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { toast } from "react-toastify";
 
-const BulkOrderModal = ({ isOpen, onClose, food, user, axiosBase }) => {
+const BulkOrderModal = ({ isOpen, onClose, food, user, axiosBase, ownerEmail, ownerName }) => {
   const initialFormState = {
     quantity: 1,
     deliveryDate: "",
@@ -16,10 +16,47 @@ const BulkOrderModal = ({ isOpen, onClose, food, user, axiosBase }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleBulkOrder = () => {
-    console.log("Bulk order data:", { ...form, foodId: food._id, user });
-    toast.info("Bulk order feature coming soon!");
-    onClose();
+  const handleBulkOrder = async () => {
+    // Validation
+    if (!form.quantity || form.quantity < 1) {
+      return toast.error("Please enter a valid quantity");
+    }
+    if (!form.deliveryDate) {
+      return toast.error("Please select a delivery date");
+    }
+    if (!form.address.trim()) {
+      return toast.error("Please enter a delivery address");
+    }
+
+    const total = form.quantity * (food.price || 0);
+
+    const orderData = {
+      foodId: food._id,
+      foodName: food.foodName,
+      foodImg: food.foodImg,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      quantity: form.quantity,
+      deliveryDate: form.deliveryDate,
+      address: form.address,
+      description: form.description,
+      totalPrice: total,
+      unitPrice: food.price,
+      ownerEmail,
+      ownerName
+    };
+
+    try {
+      const response = await axiosBase.post("/foods/orders", orderData);
+      if (response.data.message) {
+        toast.success("Bulk order placed successfully!");
+        setForm(initialFormState);
+        onClose();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error.response.data.message)
+    }
   };
 
   const handleClose = () => {

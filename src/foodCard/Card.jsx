@@ -83,12 +83,11 @@ const Card = ({ data }) => {
           </div>
 
           {/* Optional subtle footer badge for status icon */}
-          <div className="flex justify-center pt-3 border-t border-gray-100">
+          {/* <div className="flex justify-center py-3 border-t border-gray-100">
             <div className="flex items-center gap-2 text-amber-700 font-semibold">
-              <GrStatusGood />
-              <span>{status}</span>
+              Details
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>

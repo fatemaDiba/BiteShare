@@ -54,7 +54,7 @@ const ManageFoodCard = ({ food, index, handleDelete }) => {
         {/* Action Buttons */}
         <div className="flex justify-between items-center pt-4 border-t border-gray-100">
           <Link
-            to={`/update-food/${food._id}`}
+            to={`/dashboard/update-food/${food._id}`}
             className="flex items-center gap-2 bg-amber-100 hover:bg-amber-200 text-amber-700 font-bold px-5 py-3 rounded-xl transition-all hover:scale-105"
           >
             <FaPencil />

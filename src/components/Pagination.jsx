@@ -31,11 +31,10 @@ const Pagination = ({ pagination, currentPage, onPageChange }) => {
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={!pagination.hasPrevPage}
-          className={`px-4 py-2 rounded-lg font-semibold transition ${
-            pagination.hasPrevPage
-              ? "bg-amber-500 hover:bg-amber-600 text-white"
-              : "bg-gray-200 text-gray-400 cursor-not-allowed"
-          }`}
+          className={`px-4 py-2 rounded-lg font-semibold transition cursor-pointer ${pagination.hasPrevPage
+            ? "bg-amber-500 hover:bg-amber-600 text-white"
+            : "bg-gray-200 text-gray-400 cursor-not-allowed"
+            }`}
         >
           Prev
         </button>
@@ -62,11 +61,10 @@ const Pagination = ({ pagination, currentPage, onPageChange }) => {
                 )}
                 <button
                   onClick={() => onPageChange(page)}
-                  className={`px-4 py-2 rounded-lg font-semibold transition ${
-                    page === currentPage
-                      ? "bg-amber-600 text-white"
-                      : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                  }`}
+                  className={`px-4 py-2 rounded-lg font-semibold transition cursor-pointer ${page === currentPage
+                    ? "bg-amber-600 text-white"
+                    : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                    }`}
                 >
                   {page}
                 </button>
@@ -78,11 +76,10 @@ const Pagination = ({ pagination, currentPage, onPageChange }) => {
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={!pagination.hasNextPage}
-          className={`px-4 py-2 rounded-lg font-semibold transition ${
-            pagination.hasNextPage
-              ? "bg-amber-500 hover:bg-amber-600 text-white"
-              : "bg-gray-200 text-gray-400 cursor-not-allowed"
-          }`}
+          className={`px-4 py-2 rounded-lg font-semibold transition cursor-pointer ${pagination.hasNextPage
+            ? "bg-amber-500 hover:bg-amber-600 text-white"
+            : "bg-gray-200 text-gray-400 cursor-not-allowed"
+            }`}
         >
           Next
         </button>

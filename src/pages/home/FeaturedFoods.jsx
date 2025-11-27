@@ -38,7 +38,7 @@ const FeaturedFoods = () => {
       </div>
       <div className="text-center">
         <Link
-          to="/available-foods"
+          to="/all-foods"
           className="btn bg-amber-500 hover:bg-amber-600 text-black px-6 inline-flex items-center justify-center gap-3"
         >
           Show All Foods

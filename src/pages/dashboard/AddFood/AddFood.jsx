@@ -1,25 +1,30 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../../Auth/AuthProvider";
 import useAxios from "../../../hooks/useAxios";
 
+const imgbbApiKey = import.meta.env.VITE_IMGBB_API_KEY;
+
 const AddFood = () => {
   const { user } = useContext(AuthContext);
   const axiosBase = useAxios();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(null);
 
-  const handleAddFoodBtn = (e) => {
+  const handleAddFoodBtn = async (e) => {
     e.preventDefault();
     const form = e.target;
 
     const foodName = form.foodName.value.trim();
-    const foodImg = form.foodImg.value.trim();
     const location = form.location.value.trim();
     const quantity = Number(form.quantity.value);
     const exDate = form.date.value;
     const description = form.description.value.trim();
     const price = Number(form.price.value);
+    const imageFile = form.foodImg.files[0];
 
     // Validation
     if (foodName.length < 2)
@@ -29,28 +34,55 @@ const AddFood = () => {
     if (quantity < 1) return toast.error("Quantity must be at least 1");
     if (price < 0) return toast.error("Price cannot be negative");
     if (!exDate) return toast.error("Please select expiry date");
+    if (!imageFile) return toast.error("Please select an image");
 
-    const foodData = {
-      foodName,
-      foodImg,
-      location,
-      quantity,
-      exDate: new Date(exDate).toISOString(),
-      description,
-      price,
-      userEmail: user?.email,
-      userName: user?.displayName,
-      userUrl: user?.photoURL,
-    };
+    try {
+      setLoading(true);
 
-    axiosBase
-      .post("/foods/add-food", foodData)
-      .then(() => {
+      // Upload image to ImgBB
+      const formData = new FormData();
+      formData.append("image", imageFile);
+
+
+      if (!imgbbApiKey) {
+        setLoading(false);
+        return toast.error("ImgBB API key is missing in configuration");
+      }
+
+      const imgRes = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+        formData
+      );
+
+      if (imgRes.data.success) {
+        const foodImg = imgRes.data.data.display_url;
+
+        const foodData = {
+          foodName,
+          foodImg,
+          location,
+          quantity,
+          exDate: new Date(exDate).toISOString(),
+          description,
+          price,
+          userEmail: user?.email,
+          userName: user?.displayName,
+          userUrl: user?.photoURL,
+        };
+
+        await axiosBase.post("/foods/add-food", foodData);
         toast.success("Food added successfully!");
         form.reset();
-        navigate("/available-foods");
-      })
-      .catch(() => toast.error("Failed to add food. Try again."));
+        navigate("/dashboard/manage-myfoods");
+      } else {
+        toast.error("Failed to upload image");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to add food. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -84,20 +116,6 @@ const AddFood = () => {
                     required
                     className="w-full px-5 py-2 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-100 transition-all duration-300 outline-none"
                     placeholder="e.g., Chicken Biryani, Vegetable Curry"
-                  />
-                </div>
-
-                {/* Food Image URL */}
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Food Image URL
-                  </label>
-                  <input
-                    type="url"
-                    name="foodImg"
-                    required
-                    className="w-full px-5 py-2 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-100 transition-all duration-300 outline-none"
-                    placeholder="https://example.com/food.jpg"
                   />
                 </div>
 
@@ -165,6 +183,35 @@ const AddFood = () => {
                 </div>
               </div>
 
+              {/* Food Image File & Preview */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Food Image
+                </label>
+                <input
+                  type="file"
+                  name="foodImg"
+                  accept="image/*"
+                  required
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      setPreview(URL.createObjectURL(file));
+                    }
+                  }}
+                  className="w-full cursor-pointer px-5 py-2 rounded-xl border-2 border-gray-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-100 transition-all duration-300 outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100"
+                />
+                {preview && (
+                  <div className="mt-4">
+                    <img
+                      src={preview}
+                      alt="Preview"
+                      className="w-40 object-cover border-2 border-amber-100"
+                    />
+                  </div>
+                )}
+              </div>
+
               {/* Description */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -183,9 +230,18 @@ const AddFood = () => {
               <div className="text-center pt-6">
                 <button
                   type="submit"
-                  className="btn bg-amber-500 text-white font-bold text-lg px-12 py-5 rounded-lg shadow-2xl transform  ease-in-out transition-all duration-200  border-0 hover:bg-orange-400"
+                  disabled={loading}
+                  className={`btn bg-amber-500 text-white font-bold text-lg px-12 py-5 rounded-lg shadow-2xl transform ease-in-out transition-all duration-200 border-0 hover:bg-orange-400 ${loading ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
                 >
-                  Add Food to Share
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <span className="loading loading-spinner"></span>
+                      Uploading...
+                    </span>
+                  ) : (
+                    "Add Food to Share"
+                  )}
                 </button>
               </div>
             </form>
