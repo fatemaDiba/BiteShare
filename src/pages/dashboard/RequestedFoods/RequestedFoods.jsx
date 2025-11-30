@@ -18,7 +18,6 @@ const RequestedFoods = () => {
       .catch(() => toast.error("Failed to load requested foods!"));
   }, [axiosSecure, user?.email]);
 
-  console.log(foods);
 
   return (
     <div>
@@ -104,9 +103,8 @@ const RequestedFoods = () => {
                     {/* Expire Date */}
                     <td className="px-6 py-5">
                       <span
-                        className={`font-bold ${
-                          isExpired ? "text-red-600" : "text-green-600"
-                        }`}
+                        className={`font-bold ${isExpired ? "text-red-600" : "text-green-600"
+                          }`}
                       >
                         {new Date(food.exDate).toLocaleDateString()}
                       </span>
@@ -115,13 +113,12 @@ const RequestedFoods = () => {
                     {/* Status */}
                     <td className="px-6 py-5 text-center">
                       <span
-                        className={`inline-block px-4 py-2 rounded-full text-xs font-bold text-white ${
-                          isExpired
-                            ? "bg-red-500"
-                            : food.requestStatus === "Delivered"
+                        className={`inline-block px-4 py-2 rounded-full text-xs font-bold text-white ${isExpired
+                          ? "bg-red-500"
+                          : food.requestStatus === "Delivered"
                             ? "bg-blue-500"
                             : "bg-amber-500"
-                        }`}
+                          }`}
                       >
                         {isExpired
                           ? "Expired"

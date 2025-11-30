@@ -115,57 +115,50 @@ const AllFoods = () => {
             and expiration times to claim your food before it's gone.
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 md:justify-items-end mb-14">
-          {/* search bar */}
-          <div className="col-span-2 md:col-span-1">
-            <label className="input input-bordered  flex items-center gap-2">
-              <input
-                type="text"
-                className="grow"
-                placeholder="Search"
-                onChange={handleSearch}
+        <div className="mb-14 flex flex-col md:flex-row md:justify-end md:items-center gap-4">
+
+          {/* Search Bar */}
+          <label className="input input-bordered flex items-center gap-2 w-full md:w-64">
+            <input
+              type="text"
+              className="grow"
+              placeholder="Search"
+              onChange={handleSearch}
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="h-4 w-4 opacity-70"
+            >
+              <path
+                fillRule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clipRule="evenodd"
               />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="h-4 w-4 opacity-70"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </label>
-          </div>
-          {/* sort btn */}
-          <div>
-            <select
-              onChange={handleSortByQuantity}
-              className="select select-bordered w-full "
-            >
-              <option defaultValue value="">
-                Sort by (Default)
-              </option>
-              <option className="font-semibold" value="asc">
-                Low Quantity
-              </option>
-              <option className="font-semibold" value="desc">
-                High Quantity
-              </option>
-            </select>
-          </div>
-          {/* change layout */}
-          <div>
-            <button
-              onClick={handleLayout}
-              className="btn bg-amber-500 hover:bg-amber-600"
-            >
-              Change Layout
-            </button>
-          </div>
+            </svg>
+          </label>
+
+          {/* Sort Dropdown */}
+          <select
+            onChange={handleSortByQuantity}
+            className="select select-bordered w-full md:w-48"
+          >
+            <option defaultValue value="">Sort by (Default)</option>
+            <option className="font-semibold" value="asc">Low Quantity</option>
+            <option className="font-semibold" value="desc">High Quantity</option>
+          </select>
+
+          {/* Layout Button */}
+          <button
+            onClick={handleLayout}
+            className="btn bg-amber-500 text-white hover:bg-amber-600 w-full md:w-auto"
+          >
+            Change Layout
+          </button>
+
         </div>
+
         {loading ? (
           <Loading></Loading>
         ) : (

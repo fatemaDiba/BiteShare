@@ -25,6 +25,7 @@ import AllFoods from "../pages/AllFoods/AllFoods";
 import UpdateFood from "../pages/dashboard/UpdateFood/UpdateFood";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
 import PrivateRegLog from "../PrivateRoutes/PrivateRegLog";
+import Orders from "../pages/dashboard/Orders/Orders";
 
 const router = createBrowserRouter([
   {
@@ -150,6 +151,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageMyFoods></ManageMyFoods>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/orders",
+        element: (
+          <PrivateRoute>
+            <Orders></Orders>
           </PrivateRoute>
         ),
       },

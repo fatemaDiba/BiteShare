@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BiHome } from "react-icons/bi";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
-import { BsFolder2 } from "react-icons/bs";
+import { BsBagCheck, BsFolder2 } from "react-icons/bs";
 import { RiStickyNoteAddLine } from "react-icons/ri";
 import { GrUpdate } from "react-icons/gr";
 import { FiX } from "react-icons/fi";
@@ -27,6 +27,11 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
       name: "Requested Foods",
       icon: <BsFolder2 className="text-2xl" />,
       path: "/dashboard/my-requested-foods",
+    },
+    {
+      name: "Orders",
+      icon: <BsBagCheck className="text-2xl" />,
+      path: "/dashboard/orders",
     },
   ];
 
@@ -61,10 +66,9 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
               />
               <h2
                 className={`origin-left whitespace-nowrap text-xl font-bold text-slate-800 transition-all duration-300
-                  ${
-                    isCollapsed
-                      ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden"
-                      : "lg:max-w-none lg:scale-100 lg:opacity-100"
+                  ${isCollapsed
+                    ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden"
+                    : "lg:max-w-none lg:scale-100 lg:opacity-100"
                   } hidden lg:block
                 `}
               >
@@ -103,15 +107,13 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
                 to={item.path}
                 onClick={() => setIsMobileOpen(false)}
                 className={`group relative flex items-center rounded-xl transition-all duration-200
-                  ${
-                    location.pathname === item.path
-                      ? "bg-blue-100 text-blue-800 shadow-md shadow-blue-200/50 font-semibold"
-                      : "text-slate-700 hover:bg-blue-100 hover:text-blue-700"
+                  ${location.pathname === item.path
+                    ? "bg-blue-100 text-blue-800 shadow-md shadow-blue-200/50 font-semibold"
+                    : "text-slate-700 hover:bg-blue-100 hover:text-blue-700"
                   }
-                  ${
-                    isCollapsed
-                      ? "lg:justify-center py-3"
-                      : "justify-start px-3 py-2.5"
+                  ${isCollapsed
+                    ? "lg:justify-center py-3"
+                    : "justify-start px-3 py-2.5"
                   }
                 `}
               >
@@ -121,10 +123,9 @@ const Sidebar = ({ isMobileOpen, setIsMobileOpen }) => {
 
                 <span
                   className={`ml-3 whitespace-nowrap text-sm font-medium transition-all duration-300
-                    ${
-                      isCollapsed
-                        ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden lg:ml-0"
-                        : "lg:max-w-none lg:scale-100 lg:opacity-100"
+                    ${isCollapsed
+                      ? "lg:max-w-0 lg:scale-0 lg:opacity-0 lg:overflow-hidden lg:ml-0"
+                      : "lg:max-w-none lg:scale-100 lg:opacity-100"
                     }`}
                 >
                   {item.name}
